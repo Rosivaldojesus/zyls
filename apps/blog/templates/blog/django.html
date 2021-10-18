@@ -11,10 +11,15 @@
     </div>
 
     {% for post in posts %}
-    <div class="card">
-        <a class="nav-link" href="visualizar-post-django/?id={{ post.id }}">{{ post.titulo_post }}</a>
-
-
+    <div class="card mt-1 mb-1">
+        <a class="nav-link" href="visualizar-post-django/?id={{ post.id }}">
+            {{ post.titulo_post }}
+            {{ post.excerto_post|safe }}
+        </a>
+        <div class="d-inline">
+            <div class="d-inline-flex"><a href="#">Editar</a></div>
+            <div class="d-inline-flex"><a href="#" class="">Deletar</a></div>
+        </div>
     </div>
     {% endfor %}
 
