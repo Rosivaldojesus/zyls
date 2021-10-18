@@ -10,6 +10,27 @@
         <h1>Tópicos do blog</h1>
     </div>
 
+
+
+    <div>
+        <!-- INÍCIO Messagens -->
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+      {% endfor %}
+      {% endif %}
+  <!-- FIM Messagens -->
+    </div>
+
+
+
+
+    <div class=" mt-2 mb-2" align="right">
+         <a href="{% url 'criar-post' %}" class="btn btn-primary">Criar Post</a>
+    </div>
+
     <div class="row">
         <div class="card w-50">
         Python
