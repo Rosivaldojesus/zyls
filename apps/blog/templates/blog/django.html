@@ -11,12 +11,10 @@
 
     {% for post in posts %}
     <div class="card mt-1 mb-1">
-        <a class="nav-link" href="visualizar-post-django/?id={{ post.id }}">
+        <a class="nav-link" href="{{ post.get_absolute_url }}">
             {{ post.titulo_post }}
             {{ post.excerto_post|safe }}
         </a>
-
-
 
 
         <div class="d-inline">
