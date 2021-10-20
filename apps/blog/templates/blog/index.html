@@ -1,45 +1,64 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block title %}    <title>:: Blog</title>  {% endblock %}
 
 {% block main %}
 <div class="container">
+
+    <!-- INÍCIO Título da página -->
     <div class="mt-2 mb-2">
-        <h1>Tópicos do blog</h1>
+        <h1>Programação Python/Django</h1>
     </div>
+    <!-- FIM Título da página -->
 
-
-
+    <!-- INÍCIO Messagens -->
     <div>
-        <!-- INÍCIO Messagens -->
-    {% if messages %}
-    {% for message in messages %}
-        <div class="alert {{ message.tags }}" role="alert">
-            {{ message }}
-        </div>
-      {% endfor %}
-      {% endif %}
-  <!-- FIM Messagens -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
+    <!-- FIM Messagens -->
 
-
-
-
+    <!-- INÍCIO Botão de Criar POST -->
     <div class=" mt-2 mb-2" align="right">
          <a href="{% url 'criar-post' %}" class="btn btn-primary">Criar Post</a>
+
     </div>
+    <!-- FIM Botão de Criar POST -->
 
-    <div class="row">
-        <div class="card w-50">
-        Python
-        </div>
-
-        <div class="card w-50">
+    <!-- INÍCIO das categorias de programação -->
+    <div class="card-columns">
+        <div class="card w-25">
             <a href="/blog/django/">Django</a>
         </div>
+        <div class="card w-25">
+            <a href="/blog/heroku/">Heroku</a>
+        </div>
     </div>
+    <!-- INÍCIO das categorias de programação -->
 
+    <hr>
+    <hr>
+
+    <!-- INÍCIO Lista de todos os Posts publicados -->
+    <div class="card-columns">
+        {% for post in posts %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.titulo_post}}</h5>
+            <p class="card-text">{{ post.excerto_post | safe }}</p>
+            <div align="right">
+                <a href="{{ post.get_absolute_url }}" class="nav-link">Ler</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- FIM Lista de todos os Posts publicados -->
 </div>
 {% endblock %}

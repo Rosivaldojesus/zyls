@@ -1,14 +1,12 @@
 from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from .models import Post
 from .forms import PostCreateForm
 
 # Create your views here.
-def Index(request):
-    return render(request, 'blog/index.html')
-
-
 class PostDjangoCreateView(SuccessMessageMixin, CreateView):
     model = Post
     template_name = "blog/criar-post.html"
@@ -25,6 +23,35 @@ class PostDjangoCreateView(SuccessMessageMixin, CreateView):
     def form_valid(self, form):
         form.instance.autor_post = self.request.user
         return super().form_valid(form)
+
+
+class PostDjangoDetailView(DetailView):
+    model = Post
+
+
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'blog/index.html'
+
+    def get_queryset(self):
+        return Post.objects.filter()
+    context_object_name = 'posts'
+
+
+class PostDetailView(DetailView):
+    # specify the model to use
+    model = Post
+    template_name = 'blog/visualizar-post.html'
+
+    # override context data
+    def get_context_data(self, *args, **kwargs):
+        context = super(PostDetailView,
+                        self).get_context_data(*args, **kwargs)
+        # add extra field
+        context["category"] = "MISC"
+        return context
+
 
 
 

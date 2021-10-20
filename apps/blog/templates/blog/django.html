@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block title %}    <title>:: Django</title>  {% endblock %}
 
 {% block main %}
@@ -16,6 +15,10 @@
             {{ post.titulo_post }}
             {{ post.excerto_post|safe }}
         </a>
+
+
+
+
         <div class="d-inline">
             <div class="d-inline-flex"><a href="#">Editar</a></div>
             <div class="d-inline-flex"><a href="#" class="">Deletar</a></div>
