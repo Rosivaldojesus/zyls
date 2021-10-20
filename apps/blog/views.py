@@ -19,7 +19,6 @@ class PostDjangoCreateView(SuccessMessageMixin, CreateView):
             cleaned_data,
             titulo_post=self.object.titulo_post,
         )
-
     def form_valid(self, form):
         form.instance.autor_post = self.request.user
         return super().form_valid(form)
@@ -37,6 +36,14 @@ class PostListView(ListView):
     def get_queryset(self):
         return Post.objects.filter()
     context_object_name = 'posts'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            posts = Post.objects.filter(titulo_post__icontains=query)
+        else:
+            posts = Post.objects.filter()
+        return posts
 
 
 class PostDetailView(DetailView):

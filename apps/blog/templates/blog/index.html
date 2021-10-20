@@ -6,11 +6,24 @@
 {% block main %}
 <div class="container">
 
-    <!-- INÍCIO Título da página -->
-    <div class="mt-2 mb-2">
-        <h1>Programação Python/Django</h1>
-    </div>
-    <!-- FIM Título da página -->
+    <!-- INÍCIO  Campo de Pesquisas-->
+        <div class="mt-5">
+            <form method="GET">
+            <div class="row">
+                <div class="form-group col-10">
+                    <input type="search" class="form-control"  placeholder="Digite sua pesquisa"
+                            name="q" value="{{ request.GET.q }}">
+                </div>
+                <div class="form-group col-2">
+                    <button class=" form-control btn-success">
+                        <i class="fas fa-search"></i>
+                        Pesquisar
+                    </button>
+                </div>
+            </div>
+        </form>
+        </div>
+	<!-- FIM Campo de Pesquisas-->
 
     <!-- INÍCIO Messagens -->
     <div>
