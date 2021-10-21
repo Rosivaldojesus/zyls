@@ -34,7 +34,7 @@ class PostListView(ListView):
     model = Post
     template_name = 'blog/index.html'
 
-    def get_queryset(self):
+    def get_queryset_posts(self):
         return Post.objects.filter()
     context_object_name = 'posts'
 
@@ -56,19 +56,17 @@ class PostDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(PostDetailView,
                         self).get_context_data(*args, **kwargs)
-        # add extra field
-        context["category"] = "MISC"
         return context
 
 
 
 
 class PostUpdateView(UpdateView):
-    model = Post
-    fields = ['titulo_post']
+    model = Post # A tabela do banco de dados
+    form_class = PostUpdateForm # Form for Update
     template_name = 'blog/editar-post.html'  # templete for updating
     template_name_suffix = 'editar-post'
-    success_url = "/blog"  # posts list url
+    success_url = "/blog"  # return após atualizar
 
 
 

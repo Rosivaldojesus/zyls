@@ -75,8 +75,8 @@
                         <h5 class="card-title">{{ post.titulo_post}}</h5>
                         <p class="card-text">{{ post.excerto_post | safe }}</p>           
                         <div align="right">
-                            <a href="{{ post.get_absolute_url }}" class="btn">Visualizar</a>
-                            <a href="{% url 'editar-post' post.slug %}" class="btn">Editar</a>
+                            <a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-sm">Visualizar</a>
+                            <a href="{% url 'editar-post' post.slug %}" class="btn btn-primary btn-sm">Editar</a>
                         </div>
                       </div>
                     </div>
