@@ -24,6 +24,7 @@ class PostDjangoCreateView(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
+
 class PostDjangoDetailView(DetailView):
     model = Post
 
@@ -58,6 +59,9 @@ class PostDetailView(DetailView):
         # add extra field
         context["category"] = "MISC"
         return context
+
+
+
 
 
 

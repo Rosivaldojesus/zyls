@@ -10,4 +10,5 @@ class PostCreateForm(forms.ModelForm):
                   'categoria_post',
                   'imagem_post',
                   'publicado_post',
-                  'restricao_post']
+                  'restricao_post'
+                  ]
