@@ -1,10 +1,10 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from .models import Post
-from .forms import PostCreateForm
+from .forms import PostCreateForm, PostUpdateForm
 
 # Create your views here.
 class PostDjangoCreateView(SuccessMessageMixin, CreateView):
@@ -62,6 +62,13 @@ class PostDetailView(DetailView):
 
 
 
+
+class PostUpdateView(UpdateView):
+    model = Post
+    form_class = PostUpdateForm
+    template_name = 'blog/editar-post.html'  # templete for updating
+    template_name_suffix = 'editar-post'
+    success_url = "/blog"  # posts list url
 
 
 
