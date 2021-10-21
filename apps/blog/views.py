@@ -65,7 +65,7 @@ class PostDetailView(DetailView):
 
 class PostUpdateView(UpdateView):
     model = Post
-    form_class = PostUpdateForm
+    fields = ['titulo_post']
     template_name = 'blog/editar-post.html'  # templete for updating
     template_name_suffix = 'editar-post'
     success_url = "/blog"  # posts list url

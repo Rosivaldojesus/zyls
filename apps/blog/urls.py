@@ -12,7 +12,7 @@ urlpatterns = [
 
 
     # UpdateView
-    path('<slug:slug>/', PostUpdateView.as_view(), name='editar-post'),
+    path('blog/<slug:slug>/', PostUpdateView.as_view(), name='editar-post'),
 
     # ListView
     path('', PostListView.as_view(), name='index'),
