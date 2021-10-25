@@ -18,7 +18,7 @@ urlpatterns = [
     path('', PostListView.as_view(), name='index'),
 
     # DetailView
-    path('<slug:slug>/', PostDetailView.as_view(), name='visualizar-post'),
+    path('visualizar-post/<slug:slug>/', PostDetailView.as_view(), name='visualizar-post'),
 
 
 ]
