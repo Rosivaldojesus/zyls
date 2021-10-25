@@ -18,6 +18,8 @@ class PostDjangoCreateView(SuccessMessageMixin, CreateView):
         form.instance.autor_post = self.request.user
         return super().form_valid(form)
 
+
+
     def get_success_message(self, cleaned_data):
         return self.success_message % dict(
             cleaned_data,
