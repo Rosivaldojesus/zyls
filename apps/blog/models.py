@@ -19,7 +19,7 @@ class Topicos(models.Model):
 class Post(models.Model):
     titulo_post = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
-    autor_post = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    autor_post = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     data_post = models.DateTimeField(default=timezone.now)
     conteudo_post = RichTextField(blank=True, null=True)
     excerto_post = RichTextField(blank=True, null=True)
@@ -37,6 +37,13 @@ class Post(models.Model):
     class Meta:
         verbose_name_plural = 'Post'
 
+    #Criar automaticamente o slug
+    def save(self, *args, **Kwargs):
+        value = self.titulo_post
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **Kwargs)
+
+    #Chamada a visualização baseada no slug
     def get_absolute_url(self):
         return reverse('visualizar-post', kwargs={'slug': self.slug})
 
@@ -45,8 +52,5 @@ class Post(models.Model):
         return "{}".format(self.titulo_post)
 
 
-    def save(self, *args, **Kwargs):
-        value = self.titulo_post
-        self.slug = slugify(value, allow_unicode=True)
-        super().save(*args, **Kwargs)
+
 

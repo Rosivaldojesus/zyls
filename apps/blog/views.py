@@ -14,14 +14,19 @@ class PostDjangoCreateView(SuccessMessageMixin, CreateView):
     success_url = '/blog/'
     success_message = "%(titulo_post)s, foi criado com sucesso!!!"
 
+    def form_valid(self, form):
+        form.instance.autor_post = self.request.user
+        return super().form_valid(form)
+
     def get_success_message(self, cleaned_data):
         return self.success_message % dict(
             cleaned_data,
             titulo_post=self.object.titulo_post,
         )
-    def form_valid(self, form):
-        form.instance.autor_post = self.request.user
-        return super().form_valid(form)
+
+    #def form_valid(self, form):
+        #form.instance.autor_post = self.request.user
+        #return super().form_valid(form)
 
 
 
