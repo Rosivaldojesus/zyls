@@ -47,7 +47,7 @@
               </small>
             </p>
 
-            <a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-sm">Visualizar</a>
+            <a href="{% url 'post-detalhes' post.id %}" class="btn btn-primary btn-sm">Visualizar</a>
             <a href="{% url 'editar-post' post.slug %}" class="btn btn-primary btn-sm">Editar</a>
 
             <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal1">Excluir</a>
