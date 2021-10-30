@@ -18,9 +18,9 @@ class PostListView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        posts = super().get_queryset()
-        posts = posts.order_by('-id').filter(publicado_post=True)
-        posts = posts.annotate(
+        qs = super().get_queryset()
+        qs = qs.order_by('-id').filter(publicado_post=True)
+        qs = qs.annotate(
             numero_comentarios=Count(
                 Case(
                     When(comentarios__publicado_comentario=True, then=1)
@@ -28,11 +28,16 @@ class PostListView(ListView):
             )
 
         )
+        #query = self.request.GET.get('termo')
+        #if query:
+            #qs = Post.objects.filter(titulo_post__icontains=query).order_by('-id')
+        return qs
 
-        query = self.request.GET.get('q')
-        if query:
-            posts = Post.objects.filter(titulo_post__icontains=query).order_by('-id')
-        return posts
+
+
+class PostDetalhesView(DetailView):
+    model = Post
+    template_name= 'blog/post-detalhes.html'
 
 
 
@@ -40,16 +45,36 @@ class PostCategoriasView(PostListView):
     template_name = 'blog/post-categoria.html'
 
     def get_queryset(self):
-        posts = super().get_queryset()
+        qs = super().get_queryset()
 
         categoria = self.kwargs.get('categoria', None)
         if not categoria:
-            return posts
+            return qs
 
-        posts = posts.filter(categoria_post__nome_categoria__iexact=categoria)
+        qs = qs.filter(categoria_post__nome_categoria__iexact=categoria)
 
-        return posts
+        return qs
 
+
+
+class PostBuscaView(PostListView):
+    template_name = 'blog/post-busca.html'
+
+    def get_queryser(self):
+        qs = super().get_queryset()
+        qs = self.request.GET.get('termo')
+
+        if not termo:
+            return qs
+
+        qs = qs.filter(
+            Q(titulo_post__icontains=termo)|
+            Q(excerto_post__icontains=termo)
+        )
+        return qs
+
+
+ 
 
 
 
@@ -78,10 +103,6 @@ class PostDjangoCreateView(SuccessMessageMixin, CreateView):
         #form.instance.autor_post = self.request.user
         #return super().form_valid(form)
 
-
-
-class PostDjangoDetailView(DetailView):
-    model = Post
 
 
 
@@ -163,4 +184,4 @@ def VisualizarPostDjango(request):
     post = request.GET.get('id')
     if post:
         post = Post.objects.get(id=post)
-    return render(request, 'blog/visualizar-post-django.html',{'post': post})
+    return render(request, 'blog/visualizar-post-django(excluir).html',{'post': post})

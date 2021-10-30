@@ -8,24 +8,6 @@
 {% block main %}
 <div class="container">
 
-    <!-- INÍCIO  Campo de Pesquisas-->
-        <div class="mt-5">
-            <form method="GET">
-            <div class="row">
-                <div class="form-group col-10">
-                    <input type="search" class="form-control"  placeholder="Digite sua pesquisa"
-                            name="q" value="{{ request.GET.q }}">
-                </div>
-                <div class="form-group col-2">
-                    <button class=" form-control btn-success">
-                        <i class="fas fa-search"></i>
-                        Pesquisar
-                    </button>
-                </div>
-            </div>
-        </form>
-        </div>
-	<!-- FIM Campo de Pesquisas-->
 
     <!-- INÍCIO Messagens -->
     <div>
@@ -39,20 +21,15 @@
     </div>
     <!-- FIM Messagens -->
 
+    <!-- INICIO da inclusão da barra de navegação do blog -->
     <div class="card border-0">{% include 'blog/model-header-blog.html' %}</div>
+    <!-- FIM da inclusão da barra de navegação do blog -->
 
     <!-- INÍCIO Botão de Criar POST -->
     <div class=" mt-2 mb-2" align="right">
          <a href="{% url 'criar-post' %}" class="btn btn-primary">Criar Post</a>
-
     </div>
     <!-- FIM Botão de Criar POST -->
-
-    
-
-
-    <hr>
-    <hr>
 
     <!-- INÍCIO Lista de todos os Posts publicados -->
     <div class="card-columns">
@@ -70,7 +47,7 @@
               </small>
             </p>
 
-            <a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-sm">Visualizar</a>
+            <a href="{% url 'post-detalhes' post.id %}" class="btn btn-primary btn-sm">Visualizar</a>
             <a href="{% url 'editar-post' post.slug %}" class="btn btn-primary btn-sm">Editar</a>
 
             <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal1">Excluir</a>
@@ -81,37 +58,9 @@
       {% endfor %}
     </div>
 
-              
-              
-              
-              
-              
-              
-              
-              
-              <!--
-              {% for post in posts %}
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">{{ post.titulo_post}}</h5>
-                        <p class="card-text">{{ post.excerto_post | safe }}</p>           
-                        <div align="right">
-                            <a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-sm">Visualizar</a>
-                            <a href="{% url 'editar-post' post.slug %}" class="btn btn-primary btn-sm">Editar</a>
 
-                            <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal1">Excluir</a>
-
-                        </div>
-                      </div>
-                    </div>
-                {% endfor %}
-              -->
-
-
-
-
-            </div>
-        </div>
+     </div>
+  </div>
 
 
 
