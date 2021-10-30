@@ -8,14 +8,20 @@
 
              <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-               <a class="navbar-brand" href="/">INÍCIO</a>
+
 
                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
 
+
               <li class="nav-item">
-                  <a class="nav-link" href="/blog/">Blog</a>
-              </li>
+                <a class="nav-link" href="{% url 'post-categoria' 'django' %}">Django</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'post-categoria' 'heroku' %}">Heroku</a>
+          </li>
+
 
     </div>
   </div>

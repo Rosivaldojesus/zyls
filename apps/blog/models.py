@@ -6,13 +6,17 @@ from django.utils.text import slugify
 from django.urls import reverse
 
 # Create your models here.
-class Topicos(models.Model):
-    topico = models.CharField(max_length=255)
+class Categoria(models.Model):
+    nome_categoria = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nome da categoria')
 
     class Meta:
-        verbose_name_plural = 'Tópicos'
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+
     def __str__(self):
-        return "{}".format(self.topico)
+        return '{}'.format(self.nome_categoria)
+
+
 
 
 
@@ -23,7 +27,7 @@ class Post(models.Model):
     data_post = models.DateTimeField(default=timezone.now)
     conteudo_post = RichTextField(blank=True, null=True)
     excerto_post = RichTextField(blank=True, null=True)
-    categoria_post = models.ForeignKey(Topicos, on_delete=models.DO_NOTHING)
+    categoria_post = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
     imagem_post = models.ImageField(upload_to='post_img/%Y/%m/%d', blank=True)
     publicado_post = models.BooleanField(default=False)
 
@@ -56,3 +60,30 @@ class Post(models.Model):
 
 
 
+class Comentarios(models.Model):
+    nome_comentario = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nome Comentário')
+    email_comentario = models.EmailField(verbose_name='E-mail do Comentários')
+    comentario = RichTextField(blank=True, null=True, verbose_name='Comentário')
+    post_comentario = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Post')
+    usuario_comentario = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name='Nome do usuário')
+    data_comentario = models.DateTimeField(default=timezone.now)
+    publicado_comentario = models.BooleanField(default=False, verbose_name='Publicado')
+
+    class Meta:
+        verbose_name = 'Comentário'
+        verbose_name_plural = 'Comentários'
+    
+    def __str__(self):
+        return "{}".format(self.nome_comentario)
+
+
+
+
+
+class Topicos(models.Model):
+    topico = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name_plural = 'Tópicos'
+    def __str__(self):
+        return "{}".format(self.topico)

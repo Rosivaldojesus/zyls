@@ -1,12 +1,60 @@
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render
-from .models import Post
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Comentarios, Post
 from .forms import PostCreateForm, PostUpdateForm
+from django.contrib import messages
+from django.urls import reverse_lazy, reverse
+from django.db.models import Q, Count, Case, When
+
 
 # Create your views here.
+class PostListView(ListView):
+    model = Post
+    template_name = 'blog/index.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        posts = super().get_queryset()
+        posts = posts.order_by('-id').filter(publicado_post=True)
+        posts = posts.annotate(
+            numero_comentarios=Count(
+                Case(
+                    When(comentarios__publicado_comentario=True, then=1)
+                )
+            )
+
+        )
+
+        query = self.request.GET.get('q')
+        if query:
+            posts = Post.objects.filter(titulo_post__icontains=query).order_by('-id')
+        return posts
+
+
+
+class PostCategoriasView(PostListView):
+    template_name = 'blog/post-categoria.html'
+
+    def get_queryset(self):
+        posts = super().get_queryset()
+
+        categoria = self.kwargs.get('categoria', None)
+        if not categoria:
+            return posts
+
+        posts = posts.filter(categoria_post__nome_categoria__iexact=categoria)
+
+        return posts
+
+
+
+
+
+
 class PostDjangoCreateView(SuccessMessageMixin, CreateView):
     model = Post
     template_name = "blog/criar-post.html"
@@ -37,21 +85,6 @@ class PostDjangoDetailView(DetailView):
 
 
 
-class PostListView(ListView):
-    model = Post
-    template_name = 'blog/index.html'
-
-    def get_queryset_posts(self):
-        return Post.objects.filter()
-    context_object_name = 'posts'
-
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        if query:
-            posts = Post.objects.filter(titulo_post__icontains=query)
-        else:
-            posts = Post.objects.filter()
-        return posts
 
 
 class PostDetailView(DetailView):
@@ -76,9 +109,49 @@ class PostUpdateView(UpdateView):
     success_url = "/blog"  # return após atualizar
 
 
+class PostDeleteView(DeleteView):
+    """
+    Deletes a created employee
+    """
+    template_name = 'employee/employee_delete.html'
+    queryset = Post.objects.all()
+
+    def get_success_url(self):
+        return reverse('/blog/')
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Post, id=id_)
+
+    def delete_modal_view(request):
+        return render(request, "deletar-post.html")
 
 
 
+
+def DeletarPost(request, id=None):
+    servico = get_object_or_404(Post, id=id)
+    if request.method == "POST":
+        servico.delete()
+        return redirect('/blog/')
+    return redirect('/blog/')
+
+
+
+
+
+def AddPost(request):
+    form = PostCreateForm(request.POST)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.criado_por = request.user
+        obj = form.save()
+        obj.save()
+        messages.success(request, 'Serviço adicionado com sucesso!')
+        return redirect('/servicos/')
+    else:
+        form = PostCreateForm()
+    return render(request, 'services/cadastro-servico.html', {'form': form})
 
 def PostDjango(request):
     posts = Post.objects.all()
