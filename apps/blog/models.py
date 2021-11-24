@@ -23,7 +23,7 @@ class Categoria(models.Model):
 class Post(models.Model):
     titulo_post = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
-    autor_post = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
+    autor_post = models.ForeignKey(User, on_delete=models.DO_NOTHING,  related_name='Autor_Post', blank=True, null=True)
     data_post = models.DateTimeField(default=timezone.now)
     conteudo_post = RichTextField(blank=True, null=True)
     excerto_post = RichTextField(blank=True, null=True)

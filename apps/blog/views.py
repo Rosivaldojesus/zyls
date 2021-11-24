@@ -88,23 +88,13 @@ class PostDjangoCreateView(SuccessMessageMixin, CreateView):
     success_message = "%(titulo_post)s, foi criado com sucesso!!!"
 
     def form_valid(self, form):
-        form.instance.autor_post = self.request.user
-        return super().form_valid(form)
-
-
-
-    def get_success_message(self, cleaned_data):
-        return self.success_message % dict(
-            cleaned_data,
-            titulo_post=self.object.titulo_post,
-        )
-
-    #def form_valid(self, form):
-        #form.instance.autor_post = self.request.user
-        #return super().form_valid(form)
-
-
-
+        if form.is_valid():
+            #form.instance.autor_post = self.object
+            form.instance.autor_post = self.request.user
+            form.save()
+            return super(PostDjangoCreateView, self).form_valid(form)
+        else:
+            return super(PostDjangoCreateView, self).form_invalid(form)
 
 
 
