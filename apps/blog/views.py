@@ -12,6 +12,7 @@ from django.db.models import Q, Count, Case, When
 
 
 # Create your views here.
+
 class PostListView(ListView):
     model = Post
     template_name = 'blog/index.html'
@@ -26,7 +27,6 @@ class PostListView(ListView):
                     When(comentarios__publicado_comentario=True, then=1)
                 )
             )
-
         )
         #query = self.request.GET.get('termo')
         #if query:
@@ -74,9 +74,6 @@ class PostBuscaView(PostListView):
         return qs
 
 
- 
-
-
 
 
 
@@ -111,13 +108,12 @@ class PostDetailView(DetailView):
 
 
 
-
 class PostUpdateView(UpdateView):
     model = Post # A tabela do banco de dados
     form_class = PostUpdateForm # Form for Update
     template_name = 'blog/editar-post.html'  # templete for updating
     template_name_suffix = 'editar-post'
-    success_url = "/blog"  # return após atualizar
+    success_url = "blog/"  # return após atualizar
 
 
 class PostDeleteView(DeleteView):
@@ -166,7 +162,7 @@ def AddPost(request):
 
 def PostDjango(request):
     posts = Post.objects.all()
-    return render(request, 'blog/django.html',
+    return render(request, 'blog/__django.html',
                   {'posts':posts,
                    })
 

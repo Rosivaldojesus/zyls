@@ -5,9 +5,10 @@
 
 {% block title %}    <title>:: Blog</title>  {% endblock %}
 
-{% block main %}
-<div class="container">
 
+{% block main %}
+
+<div class="container">
 
     <!-- INÍCIO Messagens -->
     <div>
@@ -35,8 +36,7 @@
     <div class="card-columns">
       {% for post in posts %}
       <div class="col">
-        <div class="card">
-          <img src="..." class="card-img-top" alt="...">
+        <div class="card shadow">
           <div class="card-body">
             <h5 class="card-title">{{ post.titulo_post}}</h5>
             <p class="card-text">{{ post.excerto_post | safe }}</p>
