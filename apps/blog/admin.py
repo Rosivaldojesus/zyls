@@ -6,10 +6,12 @@ from .models import Categoria,Post,  Comentarios
 # Register your models here.
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome_categoria')
+    
 admin.site.register(Categoria, CategoriaAdmin)
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'titulo_post','categoria_post' ,'restricao_post','publicado_post')
+    search_fields = ('titulo_post', )
     list_editable = ('restricao_post', 'publicado_post' )
     list_display_links = ('id', 'titulo_post')
 admin.site.register(Post, PostAdmin)
