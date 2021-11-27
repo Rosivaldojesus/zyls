@@ -37,7 +37,7 @@
         <div class="card shadow">
           <div class="card-body">
             <h5 class="card-title">
-              <a class="nav-link" href="% url 'post-detalhes' post.id %}">{{ post.titulo_post}}</a>
+              <a class="nav-link" href="{% url 'post-detalhes' post.id %}">{{ post.titulo_post}}</a>
               </h5>
             <p class="card-text">{{ post.excerto_post | safe }}</p>
 
