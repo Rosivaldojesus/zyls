@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'blog/base_blog.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% load humanize %}
@@ -21,9 +21,7 @@
     </div>
     <!-- FIM Messagens -->
 
-    <!-- INICIO da inclusão da barra de navegação do blog -->
-    <div class="card border-0">{% include 'blog/model-header-blog.html' %}</div>
-    <!-- FIM da inclusão da barra de navegação do blog -->
+
 
     <!-- INÍCIO Botão de Criar POST -->
     <div class=" mt-2 mb-2" align="right">
@@ -35,7 +33,7 @@
     <div class="card-columns">
       {% for post in posts %}
       <div class="col">
-        <div class="card">
+        <div class="card shadow">
           <div class="card-body">
             <h5 class="card-title">{{ post.titulo_post}}</h5>
             <p class="card-text">{{ post.excerto_post | safe }}</p>
@@ -51,16 +49,15 @@
 
             <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal1">Excluir</a>
           </div>
-          
+
         </div>
       </div>
       {% endfor %}
     </div>
 
+
      </div>
   </div>
-
-
 
 
 

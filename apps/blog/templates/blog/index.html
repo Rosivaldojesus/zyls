@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'blog/base_blog.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% load humanize %}
 
-{% block title %}    <title>:: Blog</title>  {% endblock %}
+{% block title %}<title>:: Blog</title>{% endblock %}
 
 
 {% block main %}
@@ -22,9 +22,6 @@
     </div>
     <!-- FIM Messagens -->
 
-    <!-- INICIO da inclusão da barra de navegação do blog -->
-    <div class="card border-0">{% include 'blog/model-header-blog.html' %}</div>
-    <!-- FIM da inclusão da barra de navegação do blog -->
 
     <!-- INÍCIO Botão de Criar POST -->
     <div class=" mt-2 mb-2" align="right">
@@ -33,12 +30,15 @@
     <!-- FIM Botão de Criar POST -->
 
     <!-- INÍCIO Lista de todos os Posts publicados -->
-    <div class="card-columns">
+
+    <div class="card-columns">   
       {% for post in posts %}
       <div class="col">
         <div class="card shadow">
           <div class="card-body">
-            <h5 class="card-title">{{ post.titulo_post}}</h5>
+            <h5 class="card-title">
+              <a class="nav-link" href="#">{{ post.titulo_post}}</a>
+              </h5>
             <p class="card-text">{{ post.excerto_post | safe }}</p>
 
             <p class="card-text">
@@ -47,10 +47,11 @@
               </small>
             </p>
 
+            <!--
             <a href="{% url 'post-detalhes' post.id %}" class="btn btn-primary btn-sm">Visualizar</a>
             <a href="{% url 'editar-post' post.slug %}" class="btn btn-primary btn-sm">Editar</a>
-
             <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal1">Excluir</a>
+            -->
           </div>
           
         </div>
