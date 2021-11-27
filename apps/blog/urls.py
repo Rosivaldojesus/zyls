@@ -42,7 +42,7 @@ urlpatterns = [
     path('busca/', PostBuscaView.as_view(), name='post-busca'),
 
     # DetailView
-    path('post/<int:pk>', PostDetalhesView.as_view(), name='post-detalhes'),
+    path('post/<slug:slug>', PostDetalhesView.as_view(), name='post-detalhes'),
 
 
 
