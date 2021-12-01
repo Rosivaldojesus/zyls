@@ -18,12 +18,22 @@
   </a>
   <div class="right menu">
     <div class="item">
-      <div class="ui transparent icon input">
-        <input type="text" placeholder="Search...">
-        <i class="search link icon"></i>
-      </div>
+      <form method="GET" action="{% url 'post-busca' %}">
+        <div class="ui transparent icon input">
+          <input type="search" name="termo" value="{{ request.GET.termo }}" placeholder="Informe o assunto">
+
+          <button type="submit"> <i class=" btn search link icon"></i> </button>
+
+
+
+
+        </div>
+      </form>
+
     </div>
   </div>
-</div>
+
+
+
 
 </div>

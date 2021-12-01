@@ -11,15 +11,6 @@ urlpatterns = [
     # UpdateView
     path('blog/<slug:slug>/', PostUpdateView.as_view(), name='editar-post'),
 
-
-
-
-
-
-
-
-
-
     path('django/visualizar-post-django/', VisualizarPostDjango),
 
     path('django/deletar-post/<int:id>', DeletarPost),
@@ -33,18 +24,12 @@ urlpatterns = [
     # CreateView
     path('criar-post/', PostDjangoCreateView.as_view(), name='criar-post'),
 
-
-
-
     # ListView
-
     path('post-categoria/<str:categoria>', PostCategoriasView.as_view(), name='post-categoria'),
-    path('busca/', PostBuscaView.as_view(), name='post-busca'),
+    path('post-busca/', PostBuscaView.as_view(), name='post-busca'),
 
     # DetailView
     path('post/<slug:slug>', PostDetalhesView.as_view(), name='post-detalhes'),
-
-
 
     path('django/', PostDjango),
 

@@ -12,7 +12,6 @@ from django.db.models import Q, Count, Case, When
 
 
 # Create your views here.
-
 class PostListView(ListView):
     model = Post
     template_name = 'blog/index.html'
@@ -28,11 +27,7 @@ class PostListView(ListView):
                 )
             )
         )
-        #query = self.request.GET.get('termo')
-        #if query:
-            #qs = Post.objects.filter(titulo_post__icontains=query).order_by('-id')
         return qs
-
 
 
 class PostDetalhesView(DetailView):
@@ -40,41 +35,28 @@ class PostDetalhesView(DetailView):
     template_name= 'blog/post-detalhes.html'
 
 
-
 class PostCategoriasView(PostListView):
     template_name = 'blog/post-categoria.html'
 
     def get_queryset(self):
         qs = super().get_queryset()
-
         categoria = self.kwargs.get('categoria', None)
         if not categoria:
             return qs
-
         qs = qs.filter(categoria_post__nome_categoria__iexact=categoria)
-
         return qs
-
 
 
 class PostBuscaView(PostListView):
     template_name = 'blog/post-busca.html'
 
-    def get_queryser(self):
+    def get_queryset(self):
         qs = super().get_queryset()
-        qs = self.request.GET.get('termo')
-
+        termo = self.request.GET.get('termo')
         if not termo:
             return qs
-
-        qs = qs.filter(
-            Q(titulo_post__icontains=termo)|
-            Q(excerto_post__icontains=termo)
-        )
+        qs = qs.filter(Q(titulo_post__icontains=termo))
         return qs
-
-
-
 
 
 class PostDjangoCreateView(SuccessMessageMixin, CreateView):
@@ -107,7 +89,6 @@ class PostDetailView(DetailView):
         return context
 
 
-
 class PostUpdateView(UpdateView):
     model = Post # A tabela do banco de dados
     form_class = PostUpdateForm # Form for Update
@@ -117,9 +98,6 @@ class PostUpdateView(UpdateView):
 
 
 class PostDeleteView(DeleteView):
-    """
-    Deletes a created employee
-    """
     template_name = 'employee/employee_delete.html'
     queryset = Post.objects.all()
 
@@ -132,8 +110,6 @@ class PostDeleteView(DeleteView):
 
     def delete_modal_view(request):
         return render(request, "deletar-post.html")
-
-
 
 
 def DeletarPost(request, id=None):
