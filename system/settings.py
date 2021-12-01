@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     'apps.core',
+    'apps.dashboard',
 
 
     'apps.blog',
