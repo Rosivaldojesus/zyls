@@ -1,4 +1,4 @@
-import plotly.offline as opy
+
 from django.views.generic import TemplateView
 import plotly.graph_objs as go
 from plotly.offline import plot
