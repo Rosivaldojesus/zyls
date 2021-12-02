@@ -26,11 +26,12 @@ class Crypto(models.Model):
 
 class Active(models.Model):
     name_crypto = models.ForeignKey(Crypto, on_delete=models.DO_NOTHING)
+    unitary_value = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     purchase_value = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     purchase_date = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = 'Ativos Comprados'
 
-    def __str__(self):
-        return self.name_crypto
+    # def __str__(self):
+    #     return self.purchase_value
