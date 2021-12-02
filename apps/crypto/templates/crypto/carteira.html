@@ -1,5 +1,6 @@
 {% include 'crypto/base_crypto.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}<title>  .:: Carteira </title>{% endblock %}
 
@@ -37,7 +38,7 @@
         <th>{{ active.quantity_crypto }}</th>
 
         <th {% if active.lucro > 0 %} style="color: green;" {% elif active.lucro < 0 %} style="color: red;" {% endif %}>
-          {{ active.lucro }}
+          {{ active.lucro|intword }}
         </th>
 
 
