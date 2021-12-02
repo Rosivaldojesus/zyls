@@ -21,7 +21,7 @@
 
         <th scope="col">Lucro</th>
 
-        <th scope="col">First</th>
+        <th scope="col" style="color: green;">First</th>
         <th scope="col">Last</th>
         <th scope="col">Handle</th>
       </tr>
@@ -36,7 +36,9 @@
         <th>{{ active.name_crypto.value_current_cripto }}</th>
         <th>{{ active.quantity_crypto }}</th>
 
-        <th>{{ active.lucro }}</th>
+        <th {% if active.lucro > 0 %} style="color: green;" {% elif active.lucro < 0 %} style="color: red;" {% endif %}>
+          {{ active.lucro }}
+        </th>
 
 
         <td>Mark</td>
