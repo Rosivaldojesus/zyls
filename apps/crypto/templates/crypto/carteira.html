@@ -4,45 +4,46 @@
 {% block title %}<title>  .:: Carteira </title>{% endblock %}
 
 
-
 {% block main %}
 
-<div class="ui container">
- 
-    <!-- Carteira de investimentos -->
+<div class="container">
 
-    <table class="ui celled table">
-  <thead>
-    <tr><th>Nome</th>
-    <th>Simbolo</th>
+  <div class="table-responsive">
+  <table class="table">
+    <thead>
+      
+      <tr>
+        <th scope="col">Ativo</th>
+        <th scope="col">Símbolo</th>
+        <th scope="col">Compra</th>
+        <th scope="col">Atual</th>
+        <th scope="col">Quantidade</th>
 
-    <th>Valor Compra (Unidadde)</th>
-    <th>Valor hoje (Unidadde)</th>
-
-    <th>Total compra</th>
-    <th>Acumlado da  compra</th>
-
-
-  </tr></thead>
-  <tbody>
-  {% for active in actives %}
-    <tr>
-      <td data-label="Name">{{ active.name_crypto }}</td>
-      <td data-label="Age">{{ active.name_crypto.crypto_symbol }}</td>
-
-      <td>{{ active.unitary_value }}</td>
-      <td>{{ active.name_crypto.value_current_cripto }}</td>
-
-      <td>{{ active.purchase_value }}</td>
-      <td>Acumlado da  compra</td>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+      
+    </thead>
+    <tbody>
+      {% for active in actives %}
+      <tr>
+        <th>{{ active.name_crypto.name_crypto }}</th>
+        <th>{{ active.name_crypto.crypto_symbol }}</th>
+        <th>{{ active.purchase_value }}</th>
+        <th>{{ active.name_crypto.value_current_cripto }}</th>
+        <th>{{ active.quantity_crypto }}</th>
 
 
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
 
-        
 </div>
 {% endblock %}
 
