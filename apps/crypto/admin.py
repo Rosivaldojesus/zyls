@@ -9,10 +9,10 @@ admin.site.register(CategoryCripto)
 
 
 class CryptoAdmin(admin.ModelAdmin):
-    list_display = ('name_crypto','unitary_value', 'value_current_cripto', 'crypto_symbol', 'category')
+    list_display = ('name_crypto', 'value_current_cripto', 'crypto_symbol', 'category')
 admin.site.register(Crypto, CryptoAdmin)
 
 
 class ActiveAdmin(admin.ModelAdmin):
-    list_display = ('name_crypto', 'purchase_value', 'purchase_date')
+    list_display = ('name_crypto','unitary_value', 'purchase_value', 'purchase_date')
 admin.site.register(Active, ActiveAdmin)
