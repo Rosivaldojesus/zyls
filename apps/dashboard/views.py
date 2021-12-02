@@ -1,8 +1,10 @@
-
+from django.shortcuts import render
 from django.views.generic import TemplateView
 import plotly.graph_objs as go
 from plotly.offline import plot
 from .ploty import Plot1d
+
+
 
 
 
@@ -32,13 +34,15 @@ class Graph(TemplateView):
 
 class Graph_a(TemplateView):
     template_name = 'dashboard/graph_a.html'
-
+    by_days = []
 
     def get_context_data(self, **kwargs):
         context = super(Graph_a, self).get_context_data(**kwargs)
 
         fig = go.Figure()
-        scatter = go.Scatter(x=["Segunda",'Terça', 'Quarta', 'Quinta'], y=[0, 10, 17, 8],
+        scatter = go.Scatter(x=[x['day']
+   for x in by_days
+                                ], y=[0, 10, 17, 8],
                              mode='lines', name='test',
                              opacity=0.8, marker_color='green'
         )
@@ -49,3 +53,36 @@ class Graph_a(TemplateView):
         context['graph'] = div
 
         return context
+
+
+
+
+
+
+
+
+def Graph_b(request):
+
+    # from plotly.offline import plot
+    # import plotly.graph_objs as go
+    #
+    # fig = go.Figure()
+    # scatter = go.Scatter(x=[0, 1, 2, 3], y=[0, 1, 2, 3],
+    #                      mode='lines', name='test',
+    #                      opacity=0.8, marker_color='green')
+    # fig.add_trace(scatter)
+    # plt_div = plot(fig, output_type='div')
+
+    import plotly.express as px
+    from pandas import DataFrame
+
+    df1 = DataFrame(dict(time=[10, 20, 30], sales=[10, 8, 30]))
+    df2 = DataFrame(dict(market=[4, 2, 5]))
+    plt_div = px.bar(df1, x=df1.time, y=df2.market, color=df1.sales)
+
+
+    context = {
+        'plt_div': plt_div
+    }
+
+    return render(request, 'dashboard/graph_b.html', context)

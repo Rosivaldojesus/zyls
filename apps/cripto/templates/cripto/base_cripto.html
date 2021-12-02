@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Ui Semantic -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+     
+                
+
+    {% block title %}<title>  .:: Blog ZYL´s </title>{% endblock %}
+
+</head>
+<body>
+
+
+    <div>
+        {% block header %}
+        {% include "cripto/header_cripto.html" %}
+        {% endblock %}
+    </div>
+
+    <div>
+        {% block main %}
+        {% endblock %}
+    </div>
+
+    <div>
+        <!--
+        {% block footer %}
+        {% include "cripto/footer_cripto.html" %}
+        {% endblock %}
+        -->
+    </div>
+
+
+
+ <!-- Semantic JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.js"></script>
+
+	<script>
+		$(".page-{% block page %}unknown{% endblock %}").addClass("active");
+		$(".ui.dropdown").dropdown({allowAdditions: true});
+		$(".ui.form").form();
+		$(".ui.date.calendar").calendar({ type: "date" });
+		$(".ui.datetime.calendar").calendar({ type: "datetime" });
+		$(".ui.time.calendar").calendar({ type: "time" });
+	</script>
+
+</body>
+</html>
+

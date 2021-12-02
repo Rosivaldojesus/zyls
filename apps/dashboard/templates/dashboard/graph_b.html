@@ -6,14 +6,14 @@
 </head>
 <body>
 
-Gráfico 1
+Gráfico B
 
-
-{% if graph %}
+{% if plt_div %}
 <div style="width:600;height:500">
-{{ graph|safe }}
+    {{ plt_div|safe }}
 </div>
 {% endif %}
+
 
 
 </body>
