@@ -15,20 +15,28 @@
   <thead>
     <tr><th>Nome</th>
     <th>Simbolo</th>
-    <th>R$ Entrada</th>
-    <th>R$: Atual</th>
-    <th>Date</th>
-        <th>% Variação</th>
+
+    <th>Valor Compra (Unidadde)</th>
+    <th>Valor hoje (Unidadde)</th>
+
+    <th>Total compra</th>
+    <th>Acumlado da  compra</th>
+
+
   </tr></thead>
   <tbody>
   {% for active in actives %}
     <tr>
       <td data-label="Name">{{ active.name_crypto }}</td>
       <td data-label="Age">{{ active.name_crypto.crypto_symbol }}</td>
-      <td data-label="Age">{{ active.purchase_value }}</td>
-      <td data-label="Age">{{ active.unitary_value }}</td>
-      <td data-label="Job">{{ active.purchase_date }}</td>
-        <td data-label="Job"> {{ active.name_crypto }}</td>
+
+      <td>{{ active.unitary_value }}</td>
+      <td>{{ active.name_crypto.value_current_cripto }}</td>
+
+      <td>{{ active.purchase_value }}</td>
+      <td>Acumlado da  compra</td>
+
+
     </tr>
   {% endfor %}
   </tbody>
