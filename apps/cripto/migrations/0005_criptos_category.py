@@ -7,13 +7,13 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cripto', '0004_auto_20211201_2046'),
+        ('crypto', '0004_auto_20211201_2046'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='criptos',
             name='category',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='cripto.CategoryCripto'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='crypto.CategoryCripto'),
         ),
     ]

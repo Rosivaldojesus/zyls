@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     'apps.core',
     'apps.dashboard',
-    'apps.cripto',
+    'apps.crypto',
 
 
     'apps.blog',

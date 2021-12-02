@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cripto', '0005_criptos_category'),
+        ('crypto', '0005_criptos_category'),
     ]
 
     operations = [
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('name_crypto', models.CharField(max_length=100, verbose_name='Nome da Cripto')),
                 ('value_current_cripto', models.DecimalField(decimal_places=2, default=0, max_digits=8)),
                 ('crypto_symbol', models.CharField(max_length=10, verbose_name='Simbolo da Crypto')),
-                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='cripto.CategoryCripto')),
+                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='crypto.CategoryCripto')),
             ],
             options={
                 'verbose_name_plural': 'Criptomoeda',

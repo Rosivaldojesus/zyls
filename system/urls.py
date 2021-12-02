@@ -6,6 +6,6 @@ urlpatterns = [
     path('', include('apps.core.urls')),
     path('blog/', include('apps.blog.urls')),
     path('dashboard/', include('apps.dashboard.urls')),
-    path('cripto/', include('apps.cripto.urls'))
+    path('crypto/', include('apps.crypto.urls'))
 
 ]

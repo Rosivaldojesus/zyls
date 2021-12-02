@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cripto', '0003_categorycripto'),
+        ('crypto', '0003_categorycripto'),
     ]
 
     operations = [

@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 
 class Index(TemplateView):
     model = Crypto
-    template_name = 'cripto/index.html'
+    template_name = 'crypto/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
