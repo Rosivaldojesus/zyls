@@ -3,5 +3,10 @@ from .models import Crypto, CategoryCripto
 
 # Register your models here.
 
+
+
 admin.site.register(CategoryCripto)
-admin.site.register(Crypto)
+
+class CryptoAdmin(admin.ModelAdmin):
+    list_display = ('name_crypto', 'value_current_cripto', 'crypto_symbol', 'category')
+admin.site.register(Crypto, CryptoAdmin)
