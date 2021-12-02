@@ -38,7 +38,7 @@
         <th>{{ active.quantity_crypto }}</th>
 
         <th {% if active.lucro > 0 %} style="color: green;" {% elif active.lucro < 0 %} style="color: red;" {% endif %}>
-          {{ active.lucro|intword }}
+          {{ active.lucro|intcomma }}
         </th>
 
 
