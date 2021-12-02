@@ -16,7 +16,8 @@
             {% for crypto in cryptos %}
             <div class="ui card">
                 <div class="content">
-                  <div class="header">{{ crypto.name_crypto }}</div>
+                  <div class="header">{{ crypto.name_crypto }} ( {{ crypto.crypto_symbol }} ) </div>
+               
                   <div class="meta">
                     <span class="right floated time">R$: {{ crypto.value_current_cripto }}</span>
                     <span class="category">{{ crypto.crypto_symbol }}</span>
