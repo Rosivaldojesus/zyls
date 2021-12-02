@@ -22,7 +22,7 @@ class Carteira(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Carteira, self).get_context_data()
         context['actives'] = Active.objects.annotate(
-            lucro=(F('name_crypto__value_current_cripto') * F('quantity_crypto'))
+            lucro=(F('name_crypto__value_current_cripto') * F('quantity_crypto')) - F('purchase_value')
 
 
 
