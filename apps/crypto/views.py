@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import F, Q
 from .models import Crypto, Active
 
 # Create your views here.
@@ -20,6 +21,11 @@ class Carteira(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super(Carteira, self).get_context_data()
-        context['actives'] = Active.objects.all()
+        context['actives'] = Active.objects.annotate(
+            lucro=(F('name_crypto__value_current_cripto') * F('quantity_crypto'))
+
+
+
+        )
         return context
 
