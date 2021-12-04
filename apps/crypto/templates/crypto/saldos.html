@@ -13,10 +13,10 @@
 
     <div class="row ">
       <!-- Início Card -->
+<!----------------------------------- BITCOIN (Início) -----------------------------------> 
+      {% for cardano in cardano %}
       <div class="col-sm-3">
-<!----------------------------------- BITCOIN (Início) ----------------------------------->        
         <!-- Conteúdo do card -->
-        {% for cardano in cardano %}
         <div class="card mt-2 mb-2">
           <div class="card-body">
             <h5 class="card-title">{{ cardano.name_crypto }} - ( {{ cardano.name_crypto.crypto_symbol }} )</h5>
@@ -27,27 +27,35 @@
             </h5>
           </div>
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
+    </div>
       <!-- Fim Card -->
 <!----------------------------------- BITCOIN (Início) ----------------------------------->  
+
+<!----------------------------------- AMP (Início) -----------------------------------> 
+{% for amp in amp %}
+<div class="col-sm-3">
+  <!-- Conteúdo do card -->
+  <div class="card mt-2 mb-2">
+    <div class="card-body">
+      <h5 class="card-title">{{ amp.name_crypto }} - ( {{ amp.name_crypto.crypto_symbol }} )</h5>
+    </div>
+    <div class="card-footer" >
+      <h5  align="right" {% if cardano.lucro < 0 %} style="color: red;"{% elif cardano.lucro < 0 %} style="color: green;"  {% endif %}> 
+         R$: {{ amp.lucro }}
+      </h5>
     </div>
   </div>
-
-
+</div>
+{% endfor %}
+</div>
+<!-- Fim Card -->
+<!----------------------------------- BITCOIN (Início) ----------------------------------->  
+  </div>
 
 ---------------------------------------------------------------------------------------------------
 
-  <div>
-    <!-- Bitcoin -->
-     {% for cardano in cardano %}
-
-
-    Cardano: {{ cardano.lucro }}
-
-
-    {% endfor %}
-  </div>
 
 </div>
 {% endblock %}

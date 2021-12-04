@@ -62,7 +62,11 @@ class Saldos(TemplateView):
         #Cardano
         cardano = requests.get('https://www.mercadobitcoin.net/api/ADA/ticker/').json()['ticker']["last"]
         context['cardano'] = Active.objects.filter(name_crypto__crypto_symbol='ADA').annotate(
-            lucro=(cardano * F('quantity_crypto')) - F('purchase_value')
-        )
+            lucro=(cardano * F('quantity_crypto')) - F('purchase_value'))
+
+        # AMP
+        cardano = requests.get('https://www.mercadobitcoin.net/api/ADA/ticker/').json()['ticker']["last"]
+        context['amp'] = Active.objects.filter(name_crypto__crypto_symbol='AMP').annotate(
+            lucro=(cardano * F('quantity_crypto')) - F('purchase_value'))
 
         return context
