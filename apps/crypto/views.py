@@ -35,8 +35,6 @@ class Carteira(TemplateView):
             lucro=( bitcoin * F('quantity_crypto')) - F('purchase_value'))
 
 
-
-
         context['crypt'] = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
         crypt = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/')
         crypt = crypt.json()
@@ -46,13 +44,24 @@ class Carteira(TemplateView):
 
         context['actives'] = Active.objects.annotate(
             lucro=( solana * F('quantity_crypto')) - F('purchase_value')
-        )
+        ).order_by('name_crypto__crypto_symbol')
 
         context['actives'] = Active.objects.annotate(
             lucro=(F('name_crypto__value_current_cripto') * F('quantity_crypto')) - F('purchase_value')
-        )
+        ).order_by('name_crypto__crypto_symbol')
 
 
 
         return context
 
+class Saldos(TemplateView):
+    model = Active
+    template_name = "crypto/saldos.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(Carteira, self).get_context_data()
+
+
+
+
+        return context
