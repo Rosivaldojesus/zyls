@@ -9,40 +9,13 @@
 
 <div class="container">
 
-  <div class="table-responsive">
-  <table class="table">
-    <thead>
-      
-      <tr>
-        <th scope="col">Ativo</th>
-        <th scope="col">Símbolo</th>
-
-
-      
-    </thead>
-    <tbody>
-      {% for active in actives %}
-      <tr>
-        <th>{{ active.name_crypto.name_crypto }}</th>
-        <th>{{ active.name_crypto.crypto_symbol }}</th>
-
-
-
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  </div>
 
 
 ---------------------------------------------------------------------------------------------------
 
   <div>
     <!-- Bitcoin -->
-    {% for bitcoin in bitcoin %}    Lucro: {{ bitcoin.lucro }}    {% endfor %}
+     {% for cardano in cardano %}  Cardano: {{ cardano.lucro }}    {% endfor %}
   </div>
 
 </div>

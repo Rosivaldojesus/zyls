@@ -36,9 +36,7 @@ class Carteira(TemplateView):
 
 
         context['crypt'] = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
-        crypt = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/')
-        crypt = crypt.json()
-
+        crypt = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
 
         solana = crypt['ticker']["last"]
 
@@ -59,9 +57,13 @@ class Saldos(TemplateView):
     template_name = "crypto/saldos.html"
 
     def get_context_data(self, **kwargs):
-        context = super(Carteira, self).get_context_data()
+        context = super(Saldos, self).get_context_data()
 
-
-
+        #Cardano
+        crypt = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
+        cardano = crypt['ticker']["last"]
+        context['cardano'] = Active.objects.filter(name_crypto__crypto_symbol='ADA').annotate(
+            lucro=(cardano * F('quantity_crypto')) - F('purchase_value')
+        )
 
         return context
