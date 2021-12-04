@@ -96,4 +96,9 @@ class Saldos(TemplateView):
         context['doge'] = Active.objects.filter(name_crypto__crypto_symbol='DOGE').annotate(
             lucro=(doge * F('quantity_crypto')) - F('purchase_value'))
 
+        # MANA
+        mana = requests.get('https://www.mercadobitcoin.net/api/MANA/ticker/').json()['ticker']["last"]
+        context['mana'] = Active.objects.filter(name_crypto__crypto_symbol='MANA').annotate(
+            lucro=(mana * F('quantity_crypto')) - F('purchase_value'))
+
         return context

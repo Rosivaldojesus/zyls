@@ -184,7 +184,32 @@
     {% endfor %}
   </div>
 </div>
-<!----------------------------------- CRV (Fim) ----------------------------------->  
+<!----------------------------------- DOGE (Fim) -----------------------------------> 
+
+<!----------------------------------- MANA (Início) -----------------------------------> 
+<div class="mt-4">
+  <h3 class="ui dividing header blue">MANA ( R$: {{ valor_atual_amp }} )<a class="anchor" id="content"></a></h3>
+  <div class="row ">
+    {% for mana in mana %}
+    <div class="col-sm-3">
+      <!-- Conteúdo do card -->
+      <div class="card mt-2 mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{ mana.name_crypto }} - ( {{ mana.name_crypto.crypto_symbol }} )</h5>
+          <small class="text-muted">Compra: R$  {{ mana.unitary_value }}</small><br>
+            <small class="text-muted">Quantidade: {{ mana.quantity_crypto }}</small>
+        </div>
+        <div class="card-footer" >
+          <h5  align="right" {% if mana.lucro < 0 %} style="color: red;"{% elif mana.lucro < 0 %} style="color: green;"  {% endif %}> 
+             R$: {{ mana.lucro }}
+          </h5>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!----------------------------------- MANA (Fim) ----------------------------------->  
 
 
 </div>
