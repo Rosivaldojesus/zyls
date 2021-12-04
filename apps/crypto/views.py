@@ -73,51 +73,61 @@ class Saldos(TemplateView):
 
         # BNT
         bnt = requests.get('https://www.mercadobitcoin.net/api/BNT/ticker/').json()['ticker']["last"]
+        context['valor_atual_bnt'] = bnt
         context['bnt'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
             lucro=(bnt * F('quantity_crypto')) - F('purchase_value'))
 
         # BTC
         btc = requests.get('https://www.mercadobitcoin.net/api/BTC/ticker/').json()['ticker']["last"]
+        context['valor_atual_btc'] = btc
         context['btc'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
             lucro=(btc * F('quantity_crypto')) - F('purchase_value'))
 
         # CITY
         city = requests.get('https://www.mercadobitcoin.net/api/CITYFT/ticker/').json()['ticker']["last"]
+        context['valor_atual_city'] = city
         context['city'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
             lucro=(city * F('quantity_crypto')) - F('purchase_value'))
 
         # CRV
         crv = requests.get('https://www.mercadobitcoin.net/api/CRV/ticker/').json()['ticker']["last"]
+        context['valor_atual_crv'] = crv
         context['crv'] = Active.objects.filter(name_crypto__crypto_symbol='CRV').annotate(
             lucro=(crv * F('quantity_crypto')) - F('purchase_value'))
 
         # DOGE
         doge = requests.get('https://www.mercadobitcoin.net/api/DOGE/ticker/').json()['ticker']["last"]
+        context['valor_atual_doge'] = doge
         context['doge'] = Active.objects.filter(name_crypto__crypto_symbol='DOGE').annotate(
             lucro=(doge * F('quantity_crypto')) - F('purchase_value'))
 
         # MANA
         mana = requests.get('https://www.mercadobitcoin.net/api/MANA/ticker/').json()['ticker']["last"]
+        context['valor_atual_mana'] = mana
         context['mana'] = Active.objects.filter(name_crypto__crypto_symbol='MANA').annotate(
             lucro=(mana * F('quantity_crypto')) - F('purchase_value'))
 
         # SOLANA
         solana = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()['ticker']["last"]
+        context['valor_atual_solana'] = solana
         context['solana'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
             lucro=(solana * F('quantity_crypto')) - F('purchase_value'))
 
         # SUSHI
         sushi = requests.get('https://www.mercadobitcoin.net/api/SUSHI/ticker/').json()['ticker']["last"]
+        context['valor_atual_sushi'] = sushi
         context['sushi'] = Active.objects.filter(name_crypto__crypto_symbol='SUSHI').annotate(
             lucro=(sushi * F('quantity_crypto')) - F('purchase_value'))
 
         # WBX
         wbx = requests.get('https://www.mercadobitcoin.net/api/WBX/ticker/').json()['ticker']["last"]
+        context['valor_atual_wb'] = wbx
         context['wbx'] = Active.objects.filter(name_crypto__crypto_symbol='WBX').annotate(
             lucro=(wbx * F('quantity_crypto')) - F('purchase_value'))
 
         # ZRX
         zrx = requests.get('https://www.mercadobitcoin.net/api/ZRX/ticker/').json()['ticker']["last"]
+        context['valor_atual_zrx'] = zrx
         context['zrx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
             lucro=(zrx * F('quantity_crypto')) - F('purchase_value'))
 
