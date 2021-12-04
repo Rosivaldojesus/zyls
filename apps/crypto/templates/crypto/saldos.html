@@ -45,7 +45,7 @@
           <h5 class="card-title">{{ amp.name_crypto }} - ( {{ amp.name_crypto.crypto_symbol }} )</h5>
         </div>
         <div class="card-footer" >
-          <h5  align="right" {% if cardano.lucro < 0 %} style="color: red;"{% elif cardano.lucro < 0 %} style="color: green;"  {% endif %}> 
+          <h5  align="right" {% if amp.lucro < 0 %} style="color: red;"{% elif amp.lucro < 0 %} style="color: green;"  {% endif %}> 
              R$: {{ amp.lucro }}
           </h5>
         </div>
@@ -55,7 +55,28 @@
   </div>
 </div>
 <!----------------------------------- AMP (Fim) ----------------------------------->  
-
+---------------------------------------------------------------------------------------------------
+<!----------------------------------- BNT (Início) -----------------------------------> 
+<div>
+  <div class="row ">
+    {% for bnt in ambntp %}
+    <div class="col-sm-3">
+      <!-- Conteúdo do card -->
+      <div class="card mt-2 mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{ bnt.name_crypto }} - ( {{ bnt.name_crypto.crypto_symbol }} )</h5>
+        </div>
+        <div class="card-footer" >
+          <h5  align="right" {% if bnt.lucro < 0 %} style="color: red;"{% elif bnt.lucro < 0 %} style="color: green;"  {% endif %}> 
+             R$: {{ bnt.lucro }}
+          </h5>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!----------------------------------- BNT (Fim) ----------------------------------->  
 
 </div>
 {% endblock %}
