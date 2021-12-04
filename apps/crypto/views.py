@@ -31,7 +31,7 @@ class Carteira(TemplateView):
         #Bitcoin
         bitcoin =  requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
         bitcoin = bitcoin['ticker']["last"]
-        context['bitcoin'] = Active.objects.annotate(
+        context['bitcoin'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
             lucro=( bitcoin * F('quantity_crypto')) - F('purchase_value'))
 
 
