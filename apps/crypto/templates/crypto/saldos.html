@@ -114,7 +114,7 @@
 <!----------------------------------- BTC (Fim) ----------------------------------->  
 <!----------------------------------- CITY (Início) -----------------------------------> 
 <div class="mt-4">
-  <h3 class="ui dividing header blue">Manchester City FC ( R$: {{ valor_atual_amp }} )<a class="anchor" id="content"></a></h3>
+  <h3 class="ui dividing header blue">(Error)Manchester City FC ( R$: {{ valor_atual_amp }} )<a class="anchor" id="content"></a></h3>
   <div class="row ">
     {% for city in city %}
     <div class="col-sm-3">
@@ -128,6 +128,30 @@
         <div class="card-footer" >
           <h5  align="right" {% if city.lucro < 0 %} style="color: red;"{% elif city.lucro < 0 %} style="color: green;"  {% endif %}> 
              R$: {{ city.lucro }}
+          </h5>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!----------------------------------- CITY (Fim) ----------------------------------->  
+<!----------------------------------- CITY (Início) -----------------------------------> 
+<div class="mt-4">
+  <h3 class="ui dividing header blue">Curve Dao Token ( R$: {{ valor_atual_amp }} )<a class="anchor" id="content"></a></h3>
+  <div class="row ">
+    {% for crv in crv %}
+    <div class="col-sm-3">
+      <!-- Conteúdo do card -->
+      <div class="card mt-2 mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{ crv.name_crypto }} - ( {{ crv.name_crypto.crypto_symbol }} )</h5>
+          <small class="text-muted">Compra: R$  {{ crv.unitary_value }}</small><br>
+            <small class="text-muted">Quantidade: {{ crv.quantity_crypto }}</small>
+        </div>
+        <div class="card-footer" >
+          <h5  align="right" {% if crv.lucro < 0 %} style="color: red;"{% elif crv.lucro < 0 %} style="color: green;"  {% endif %}> 
+             R$: {{ crv.lucro }}
           </h5>
         </div>
       </div>
