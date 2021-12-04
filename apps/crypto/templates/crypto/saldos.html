@@ -11,7 +11,7 @@
 
 
 
-<!----------------------------------- BITCOIN (Início) -----------------------------------> 
+<!----------------------------------- CARDANO (Início) -----------------------------------> 
   <div>
     <div class="row ">
       {% for cardano in cardano %}
@@ -20,6 +20,8 @@
         <div class="card mt-2 mb-2">
           <div class="card-body">
             <h5 class="card-title">{{ cardano.name_crypto }} - ( {{ cardano.name_crypto.crypto_symbol }} )</h5>
+            <small class="text-muted">Compra: R$  {{ cardano.unitary_value }}</small><br>
+            <small class="text-muted">Quantidade: {{ cardano.quantity_crypto }}</small>
           </div>
           <div class="card-footer" >
             <h5  align="right" {% if cardano.lucro < 0 %} style="color: red;"{% elif cardano.lucro < 0 %} style="color: green;"  {% endif %}> 
@@ -31,7 +33,7 @@
       {% endfor %}
     </div>
   </div>
-<!----------------------------------- BITCOIN (Fim) ----------------------------------->  
+<!----------------------------------- CARDANO (Fim) ----------------------------------->  
 
 ---------------------------------------------------------------------------------------------------
 <!----------------------------------- AMP (Início) -----------------------------------> 
@@ -43,6 +45,8 @@
       <div class="card mt-2 mb-2">
         <div class="card-body">
           <h5 class="card-title">{{ amp.name_crypto }} - ( {{ amp.name_crypto.crypto_symbol }} )</h5>
+          <small class="text-muted">Compra: R$  {{ amp.unitary_value }}</small><br>
+            <small class="text-muted">Quantidade: {{ amp.quantity_crypto }}</small>
         </div>
         <div class="card-footer" >
           <h5  align="right" {% if amp.lucro < 0 %} style="color: red;"{% elif amp.lucro < 0 %} style="color: green;"  {% endif %}> 
@@ -65,10 +69,36 @@
       <div class="card mt-2 mb-2">
         <div class="card-body">
           <h5 class="card-title">{{ bnt.name_crypto }} - ( {{ bnt.name_crypto.crypto_symbol }} )</h5>
+          <small class="text-muted">Compra: R$  {{ bnt.unitary_value }}</small><br>
+            <small class="text-muted">Quantidade: {{ bnt.quantity_crypto }}</small>
         </div>
         <div class="card-footer" >
           <h5  align="right" {% if bnt.lucro < 0 %} style="color: red;"{% elif bnt.lucro < 0 %} style="color: green;"  {% endif %}> 
              R$: {{ bnt.lucro }}
+          </h5>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!----------------------------------- BNT (Fim) ----------------------------------->  
+---------------------------------------------------------------------------------------------------
+<!----------------------------------- BNT (Início) -----------------------------------> 
+<div>
+  <div class="row ">
+    {% for bitcoin in bitcoin %}
+    <div class="col-sm-3">
+      <!-- Conteúdo do card -->
+      <div class="card mt-2 mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{ bitcoin.name_crypto }} - ( {{ bitcoin.name_crypto.crypto_symbol }} )</h5>
+          <small class="text-muted">Compra: R$  {{ bitcoin.unitary_value }}</small><br>
+            <small class="text-muted">Quantidade: {{ bitcoin.quantity_crypto }}</small>
+        </div>
+        <div class="card-footer" >
+          <h5  align="right" {% if bitcoin.lucro < 0 %} style="color: red;"{% elif bitcoin.lucro < 0 %} style="color: green;"  {% endif %}> 
+             R$: {{ bitcoin.lucro }}
           </h5>
         </div>
       </div>

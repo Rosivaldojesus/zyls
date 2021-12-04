@@ -64,6 +64,8 @@ class Saldos(TemplateView):
         context['cardano'] = Active.objects.filter(name_crypto__crypto_symbol='ADA').annotate(
             lucro=(cardano * F('quantity_crypto')) - F('purchase_value'))
 
+
+
         # AMP
         amp = requests.get('https://www.mercadobitcoin.net/api/AMP/ticker/').json()['ticker']["last"]
         context['amp'] = Active.objects.filter(name_crypto__crypto_symbol='AMP').annotate(
