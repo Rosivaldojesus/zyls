@@ -86,7 +86,7 @@ class Saldos(TemplateView):
         # CITY
         city = requests.get('https://www.mercadobitcoin.net/api/CITYFT/ticker/').json()['ticker']["last"]
         context['valor_atual_city'] = city
-        context['city'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
+        context['city'] = Active.objects.filter(name_crypto__crypto_symbol='CITY').annotate(
             lucro=(city * F('quantity_crypto')) - F('purchase_value'))
 
         # CRV
