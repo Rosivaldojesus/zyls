@@ -87,18 +87,18 @@
 <!----------------------------------- BNT (Início) -----------------------------------> 
 <div>
   <div class="row ">
-    {% for bitcoin in bitcoin %}
+    {% for btc in btc %}
     <div class="col-sm-3">
       <!-- Conteúdo do card -->
       <div class="card mt-2 mb-2">
         <div class="card-body">
-          <h5 class="card-title">{{ bitcoin.name_crypto }} - ( {{ bitcoin.name_crypto.crypto_symbol }} )</h5>
-          <small class="text-muted">Compra: R$  {{ bitcoin.unitary_value }}</small><br>
-            <small class="text-muted">Quantidade: {{ bitcoin.quantity_crypto }}</small>
+          <h5 class="card-title">{{ btc.name_crypto }} - ( {{ btc.name_crypto.crypto_symbol }} )</h5>
+          <small class="text-muted">Compra: R$  {{ btc.unitary_value }}</small><br>
+            <small class="text-muted">Quantidade: {{ btc.quantity_crypto }}</small>
         </div>
         <div class="card-footer" >
-          <h5  align="right" {% if bitcoin.lucro < 0 %} style="color: red;"{% elif bitcoin.lucro < 0 %} style="color: green;"  {% endif %}> 
-             R$: {{ bitcoin.lucro }}
+          <h5  align="right" {% if btc.lucro < 0 %} style="color: red;"{% elif btc.lucro < 0 %} style="color: green;"  {% endif %}> 
+             R$: {{ btc.lucro }}
           </h5>
         </div>
       </div>

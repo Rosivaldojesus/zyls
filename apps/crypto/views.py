@@ -76,4 +76,9 @@ class Saldos(TemplateView):
         context['bnt'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
             lucro=(bnt * F('quantity_crypto')) - F('purchase_value'))
 
+        # BTC
+        btc = requests.get('https://www.mercadobitcoin.net/api/BTC/ticker/').json()['ticker']["last"]
+        context['btc'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
+            lucro=(btc * F('quantity_crypto')) - F('purchase_value'))
+
         return context
