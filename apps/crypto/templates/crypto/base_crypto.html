@@ -1,10 +1,8 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-
-     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
@@ -13,6 +11,10 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="../static/css/style.css">
+
+    <!-- Para funcionar o Dropdown-->
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'/>
+
 
     <!-- Chart JS ********************************************************************************************** -->
       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -23,7 +25,8 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/3da7fbe518.js" crossorigin="anonymous"></script>
 
-
+    <!-- Materializer -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -35,8 +38,7 @@
     <!-- Semantic UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
 
-    {% block title %}<title>  .:: Blog ZYL´s </title>{% endblock %}
-
+    {% block title %} <title>.:: Crypto </title> {% endblock %}
 </head>
 <body>
 
@@ -79,5 +81,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 
 
-</html>
 
+<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script>
+  $(function () {
+    $('.dropdown-toggle').dropdown();
+  });
+</script>
+
+</html>

@@ -136,7 +136,7 @@
   </div>
 </div>
 <!----------------------------------- CITY (Fim) ----------------------------------->  
-<!----------------------------------- CITY (Início) -----------------------------------> 
+<!----------------------------------- CRV (Início) -----------------------------------> 
 <div class="mt-4">
   <h3 class="ui dividing header blue">Curve Dao Token ( R$: {{ valor_atual_amp }} )<a class="anchor" id="content"></a></h3>
   <div class="row ">
@@ -159,7 +159,33 @@
     {% endfor %}
   </div>
 </div>
-<!----------------------------------- CITY (Fim) ----------------------------------->  
+<!----------------------------------- CRV (Fim) ----------------------------------->  
+
+<!----------------------------------- DOGE (Início) -----------------------------------> 
+<div class="mt-4">
+  <h3 class="ui dividing header blue">Dogecoin ( R$: {{ valor_atual_amp }} )<a class="anchor" id="content"></a></h3>
+  <div class="row ">
+    {% for doge in doge %}
+    <div class="col-sm-3">
+      <!-- Conteúdo do card -->
+      <div class="card mt-2 mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{ doge.name_crypto }} - ( {{ doge.name_crypto.crypto_symbol }} )</h5>
+          <small class="text-muted">Compra: R$  {{ doge.unitary_value }}</small><br>
+            <small class="text-muted">Quantidade: {{ doge.quantity_crypto }}</small>
+        </div>
+        <div class="card-footer" >
+          <h5  align="right" {% if doge.lucro < 0 %} style="color: red;"{% elif doge.lucro < 0 %} style="color: green;"  {% endif %}> 
+             R$: {{ doge.lucro }}
+          </h5>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!----------------------------------- CRV (Fim) ----------------------------------->  
+
 
 </div>
 {% endblock %}
