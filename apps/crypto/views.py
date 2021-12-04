@@ -106,4 +106,9 @@ class Saldos(TemplateView):
         context['solana'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
             lucro=(solana * F('quantity_crypto')) - F('purchase_value'))
 
+        # SUSHI
+        sushi = requests.get('https://www.mercadobitcoin.net/api/SUSHI/ticker/').json()['ticker']["last"]
+        context['sushi'] = Active.objects.filter(name_crypto__crypto_symbol='SUSHI').annotate(
+            lucro=(sushi * F('quantity_crypto')) - F('purchase_value'))
+
         return context
