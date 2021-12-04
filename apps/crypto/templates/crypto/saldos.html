@@ -107,6 +107,29 @@
   </div>
 </div>
 <!----------------------------------- BNT (Fim) ----------------------------------->  
+<!----------------------------------- CITY (Início) -----------------------------------> 
+<div>
+  <div class="row ">
+    {% for city in city %}
+    <div class="col-sm-3">
+      <!-- Conteúdo do card -->
+      <div class="card mt-2 mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{ city.name_crypto }} - ( {{ city.name_crypto.crypto_symbol }} )</h5>
+          <small class="text-muted">Compra: R$  {{ city.unitary_value }}</small><br>
+            <small class="text-muted">Quantidade: {{ city.quantity_crypto }}</small>
+        </div>
+        <div class="card-footer" >
+          <h5  align="right" {% if city.lucro < 0 %} style="color: red;"{% elif city.lucro < 0 %} style="color: green;"  {% endif %}> 
+             R$: {{ city.lucro }}
+          </h5>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!----------------------------------- CITY (Fim) ----------------------------------->  
 
 </div>
 {% endblock %}
