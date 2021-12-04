@@ -29,13 +29,18 @@ class Carteira(TemplateView):
         context = super(Carteira, self).get_context_data()
 
         context['crypt'] = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
-        crypt = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
+        crypt = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/')
+        crypt = crypt.json()
+
+
         solana = crypt['ticker']["last"]
-
-
 
         context['actives'] = Active.objects.annotate(
             lucro=( solana * F('quantity_crypto')) - F('purchase_value')
+        )
+
+        context['actives'] = Active.objects.annotate(
+            lucro=(F('name_crypto__value_current_cripto') * F('quantity_crypto')) - F('purchase_value')
         )
 
 
