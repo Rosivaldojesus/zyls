@@ -7,11 +7,11 @@
 
 {% block main %}
 
-<div class="ui container">
+<div class="container">
  
     <!-- Lista de Criptomoedas-->
     <div style="margin-top: 10px;">
-        <div class="ui link four doubling cards mt-4">
+        <div class="ui link four doubling cards mt-4 row">
 
             {% for crypto in cryptos %}
             <div class="ui card">
@@ -50,13 +50,12 @@
 
 
 
-  <div>
 
- 
-    {% for sol in solana %}  {{ sol }}    {% endfor %}
 
-  </div>
-        
+
+
+
+
 </div>
 {% endblock %}
 

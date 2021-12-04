@@ -60,8 +60,7 @@ class Saldos(TemplateView):
         context = super(Saldos, self).get_context_data()
 
         #Cardano
-        crypt = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
-        cardano = crypt['ticker']["last"]
+        cardano = requests.get('https://www.mercadobitcoin.net/api/ADA/ticker/').json()['ticker']["last"]
         context['cardano'] = Active.objects.filter(name_crypto__crypto_symbol='ADA').annotate(
             lucro=(cardano * F('quantity_crypto')) - F('purchase_value')
         )
