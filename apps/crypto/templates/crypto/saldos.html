@@ -287,6 +287,31 @@
 </div>
 <!----------------------------------- WiBX (Fim) ----------------------------------->  
 
+<!----------------------------------- ZRX (Início) -----------------------------------> 
+<div class="mt-4">
+  <h3 class="ui dividing header blue">0X ( R$: {{ valor_atual_amp }} )<a class="anchor" id="content"></a></h3>
+  <div class="row ">
+    {% for zrx in zrx %}
+    <div class="col-sm-3">
+      <!-- Conteúdo do card -->
+      <div class="card mt-2 mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{ zrx.name_crypto }} - ( {{ zrx.name_crypto.crypto_symbol }} )</h5>
+          <small class="text-muted">Compra: R$  {{ zrx.unitary_value }}</small><br>
+            <small class="text-muted">Quantidade: {{ zrx.quantity_crypto }}</small>
+        </div>
+        <div class="card-footer" >
+          <h5  align="right" {% if zrx.lucro < 0 %} style="color: red;"{% elif zrx.lucro < 0 %} style="color: green;"  {% endif %}> 
+             R$: {{ zrx.lucro }}
+          </h5>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!----------------------------------- WiBX (Fim) ----------------------------------->  
+
 
 </div>
 {% endblock %}

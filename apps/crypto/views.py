@@ -116,5 +116,10 @@ class Saldos(TemplateView):
         context['wbx'] = Active.objects.filter(name_crypto__crypto_symbol='WBX').annotate(
             lucro=(wbx * F('quantity_crypto')) - F('purchase_value'))
 
+        # ZRX
+        zrx = requests.get('https://www.mercadobitcoin.net/api/ZRX/ticker/').json()['ticker']["last"]
+        context['zrx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
+            lucro=(zrx * F('quantity_crypto')) - F('purchase_value'))
+
 
         return context
