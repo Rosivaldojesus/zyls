@@ -111,4 +111,10 @@ class Saldos(TemplateView):
         context['sushi'] = Active.objects.filter(name_crypto__crypto_symbol='SUSHI').annotate(
             lucro=(sushi * F('quantity_crypto')) - F('purchase_value'))
 
+        # WBX
+        wbx = requests.get('https://www.mercadobitcoin.net/api/WBX/ticker/').json()['ticker']["last"]
+        context['wbx'] = Active.objects.filter(name_crypto__crypto_symbol='WBX').annotate(
+            lucro=(wbx * F('quantity_crypto')) - F('purchase_value'))
+
+
         return context
