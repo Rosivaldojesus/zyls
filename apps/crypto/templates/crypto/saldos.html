@@ -22,8 +22,7 @@
               <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
                {% else %} style="color: green;"
                {% endif %}>
-               {{ percentual.purchase_date }}:
-                {{percentual.porcentagem|floatformat:2}}%
+               {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
 
               </h5>
           {% endfor %}
@@ -31,12 +30,11 @@
 
         <!-- Inicio AMP -->
         <h4>amp</h4>
-          {% for amp in porcentagem %}
-              <h5 {% if percentual.lucro < 0 %} style="color: red;"
+          {% for percentual in percentual_amp %}
+              <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
                {% else %} style="color: green;"
                {% endif %}>
-               {{ percentual.purchase_date }}:
-                {{amp.porcentagem|floatformat:2}}%
+               {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
 
               </h5>
           {% endfor %}
@@ -90,7 +88,7 @@
           <h3 class="ui dividing header blue">AMP ( R$: {{ valor_atual_amp }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for amp in amp %}
-            <div class="col-sm-3">
+            <div class="col-sm-6">
               <!-- Conteúdo do card -->
               <div class="card mt-2 mb-2">
                 <div class="card-body">
