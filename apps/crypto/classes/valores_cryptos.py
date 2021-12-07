@@ -1,20 +1,16 @@
 import requests
-from django.db.models import F, Q
-from ..models import Active
-
 
 class Cardano:
-
+     """ Valores referentes a Cardano"""
      def valor_atual_cardano(self):
-          url = 'https://www.mercadobitcoin.net/api/ADA/ticker/'
-          self.valor_cardano = requests.get(url).json()['ticker']["last"]
+          self.url = 'https://www.mercadobitcoin.net/api/ADA/ticker/'
+          self.valor_cardano = requests.get(self.url).json()['ticker']["last"]
           return self.valor_cardano
 
-     def percentual_cardano(self, **kwargs):
-          context = super(Cardano, self).percentual_cardano()
 
-
-          return context
-
-
-
+class Amp:
+     """ AMP """
+     def valor_atual_amp(self):
+          self.url = 'https://www.mercadobitcoin.net/api/AMP/ticker/'
+          self.valor_amp = requests.get(self.url).json()['ticker']["last"]
+          return self.valor_amp

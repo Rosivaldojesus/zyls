@@ -16,7 +16,7 @@
     <div class="card">
       <div class="card-body">
         
-        <!-- Cardano -->
+        <!-- Inicio Cardano -->
         <h4>Cardano</h4>
           {% for percentual in percentual %}
               <h5 {% if percentual.lucro < 0 %} style="color: red;"
@@ -27,8 +27,27 @@
 
               </h5>
           {% endfor %}
-       
         <!-- Fim Cardano -->
+
+        <!-- Inicio Cardano -->
+        <h4>AMP</h4>
+          {% for percentual in percentual %}
+              <h5 {% if percentual.lucro < 0 %} style="color: red;"
+               {% else %} style="color: green;"
+               {% endif %}>
+               {{ percentual.purchase_date }}:
+                {{percentual.lucro|floatformat:2}}%
+
+              </h5>
+          {% endfor %}
+        <!-- Fim Cardano -->
+
+
+
+
+
+
+
       </div>
     </div>
   </div>
@@ -42,7 +61,7 @@
       <div class="card-body">
         <!----------------------------------- CARDANO (Início) -----------------------------------> 
           <div class="mt-4">
-            <h3 class="ui dividing header blue">Cardano ( R$: {{ valor_atual_cardano }} ) -  - ( %{{ porcentagem.porcentagem }} )<a class="anchor" id="content"></a></h3>
+            <h3 class="ui dividing header blue">Cardano ( R$: {{ valor_atual_cardano }} )<a class="anchor" id="content"></a></h3>
             <div class="row ">
               {% for cardano in cardano %}
               <div class="col-sm-6">

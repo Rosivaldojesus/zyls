@@ -3,7 +3,7 @@ from django.db.models import F, Q
 from .models import Crypto, Active
 import requests
 
-from .classes.valores_cryptos import Cardano
+from .classes.valores_cryptos import Cardano, Amp
 
 
 # Create your views here.
@@ -65,17 +65,17 @@ class Saldos(TemplateView):
 
         #Cardano
         context['valor_atual_cardano'] = Cardano.valor_atual_cardano(self)
-        context['percentual'] = Active.objects.filter(name_crypto__crypto_symbol='ADA')\
-            .annotate(lucro=((100 / F('unitary_value')) * valor_cardano) - 100)
-
-        context['cardano'] = Active.objects.filter(name_crypto__crypto_symbol='ADA')\
-        .annotate(lucro=(valor_cardano * F('quantity_crypto')) - F('purchase_value'))
-
+        context['percentual'] = Active.objects.filter(name_crypto__crypto_symbol='ADA').annotate(
+            lucro=((100 / F('unitary_value')) * valor_cardano) - 100)
+        context['cardano'] = Active.objects.filter(name_crypto__crypto_symbol='ADA').annotate(
+            lucro=(valor_cardano * F('quantity_crypto')) - F('purchase_value'))
 
 
         # AMP
-        amp = requests.get('https://www.mercadobitcoin.net/api/AMP/ticker/').json()['ticker']["last"]
+        amp = Amp.valor_atual_amp(self)
         context['valor_atual_amp'] = amp
+        context['percentual'] = Active.objects.filter(name_crypto__crypto_symbol='AMP').annotate(
+            lucro=((100 / F('unitary_value')) * valor_cardano) - 100)
         context['amp'] = Active.objects.filter(name_crypto__crypto_symbol='AMP').annotate(
             lucro=(amp * F('quantity_crypto')) - F('purchase_value'))
 
