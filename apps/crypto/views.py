@@ -3,6 +3,9 @@ from django.db.models import F, Q
 from .models import Crypto, Active
 import requests
 
+from .classes.valores_cryptos import Cardano
+
+
 # Create your views here.
 from django.views.generic import TemplateView
 
@@ -60,10 +63,11 @@ class Saldos(TemplateView):
         context = super(Saldos, self).get_context_data()
 
         #Cardano
-        cardano = requests.get('https://www.mercadobitcoin.net/api/ADA/ticker/').json()['ticker']["last"]
-        context['valor_atual_cardano'] = cardano
-        context['cardano'] = Active.objects.filter(name_crypto__crypto_symbol='ADA').annotate(
-            lucro=(cardano * F('quantity_crypto')) - F('purchase_value'))
+        context['valor_atual_cardano'] = Cardano.ValorAtualCardano(self)
+        context['cardano'] = Active.objects.filter(name_crypto__crypto_symbol='ADA')\
+        .annotate(lucro=(Cardano.ValorAtualCardano(self) * F('quantity_crypto')) - F('purchase_value'))
+
+
 
         # AMP
         amp = requests.get('https://www.mercadobitcoin.net/api/AMP/ticker/').json()['ticker']["last"]

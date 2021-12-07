@@ -53,10 +53,12 @@
 
 
 ---------------------------------------------------------------------------------------------------
-
+  Pegado o lucro 
   <div>
-    <!-- Bitcoin -->
-    {% for bitcoin in bitcoin %}    Lucro: {{ bitcoin.lucro }}    {% endfor %}
+    {% for porcentagem in porcentagem_cardano %}
+     Lucro {{ porcentagem.porcentagem}}
+    {% endfor %}
+    
   </div>
 
 </div>
