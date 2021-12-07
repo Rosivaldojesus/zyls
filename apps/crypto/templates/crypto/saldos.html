@@ -110,20 +110,20 @@
 
         <!----------------------------------- BNT (Início) -----------------------------------> 
         <div class="mt-4">
-          <h3 class="ui dividing header blue">BNT ( R$: {{ valor_atual_bnt }} )<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header blue">BNT ( R$: {{ valor_atual_bnt|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for bnt in bnt%}
-            <div class="col-sm-3">
+            <div class="col-sm-6">
               <!-- Conteúdo do card -->
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <h5 class="card-title">{{ bnt.name_crypto }} - ( {{ bnt.name_crypto.crypto_symbol }} )</h5>
-                  <small class="text-muted">Compra: R$  {{ bnt.unitary_value }}</small><br>
+                  <small class="text-muted">Compra: R$  {{ bnt.unitary_value|floatformat:2 }}</small><br>
                     <small class="text-muted">Quantidade: {{ bnt.quantity_crypto }}</small>
                 </div>
                 <div class="card-footer" >
                   <h5  align="right" {% if bnt.lucro < 0 %} style="color: red;"{% elif bnt.lucro < 0 %} style="color: green;"  {% endif %}> 
-                    R$: {{ bnt.lucro }}
+                    R$: {{ bnt.lucro|floatformat:2 }}
                   </h5>
                 </div>
               </div>
@@ -135,20 +135,20 @@
 
         <!----------------------------------- BTC (Início) -----------------------------------> 
         <div class="mt-4">
-          <h3 class="ui dividing header blue">BTC ( R$: {{ valor_atual_btc }} )<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header blue">BTC ( R$: {{ valor_atual_btc|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for btc in btc %}
-            <div class="col-sm-3">
+            <div class="col-sm-6">
               <!-- Conteúdo do card -->
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <h5 class="card-title">{{ btc.name_crypto }} - ( {{ btc.name_crypto.crypto_symbol }} )</h5>
-                  <small class="text-muted">Compra: R$  {{ btc.unitary_value }}</small><br>
+                  <small class="text-muted">Compra: R$  {{ btc.unitary_value|floatformat:2 }}</small><br>
                     <small class="text-muted">Quantidade: {{ btc.quantity_crypto }}</small>
                 </div>
                 <div class="card-footer" >
                   <h5  align="right" {% if btc.lucro < 0 %} style="color: red;"{% elif btc.lucro < 0 %} style="color: green;"  {% endif %}> 
-                    R$: {{ btc.lucro }}
+                    R$: {{ btc.lucro|floatformat:2 }}
                   </h5>
                 </div>
               </div>
@@ -159,20 +159,20 @@
         <!----------------------------------- BTC (Fim) ----------------------------------->  
         <!----------------------------------- CITY (Início) -----------------------------------> 
         <div class="mt-4">
-          <h3 class="ui dividing header blue">Manchester City FC ( R$: {{ valor_atual_city }} )<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header blue">Manchester City FC ( R$: {{ valor_atual_city|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for city in city %}
-            <div class="col-sm-3">
+            <div class="col-sm-6">
               <!-- Conteúdo do card -->
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <h5 class="card-title">{{ city.name_crypto }} - ( {{ city.name_crypto.crypto_symbol }} )</h5>
-                  <small class="text-muted">Compra: R$  {{ city.unitary_value }}</small><br>
+                  <small class="text-muted">Compra: R$  {{ city.unitary_value|floatformat:2 }}</small><br>
                     <small class="text-muted">Quantidade: {{ city.quantity_crypto }}</small>
                 </div>
                 <div class="card-footer" >
                   <h5  align="right" {% if city.lucro < 0 %} style="color: red;"{% elif city.lucro < 0 %} style="color: green;"  {% endif %}> 
-                    R$: {{ city.lucro }}
+                    R$: {{ city.lucro|floatformat:2 }}
                   </h5>
                 </div>
               </div>
@@ -183,20 +183,20 @@
         <!----------------------------------- CITY (Fim) ----------------------------------->  
         <!----------------------------------- CRV (Início) -----------------------------------> 
         <div class="mt-4">
-          <h3 class="ui dividing header blue">Curve Dao Token ( R$: {{ valor_atual_crv }} )<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header blue">Curve Dao Token ( R$: {{ valor_atual_crv|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for crv in crv %}
-            <div class="col-sm-3">
+            <div class="col-sm-6">
               <!-- Conteúdo do card -->
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <h5 class="card-title">{{ crv.name_crypto }} - ( {{ crv.name_crypto.crypto_symbol }} )</h5>
-                  <small class="text-muted">Compra: R$  {{ crv.unitary_value }}</small><br>
+                  <small class="text-muted">Compra: R$  {{ crv.unitary_value|floatformat:2 }}</small><br>
                     <small class="text-muted">Quantidade: {{ crv.quantity_crypto }}</small>
                 </div>
                 <div class="card-footer" >
                   <h5  align="right" {% if crv.lucro < 0 %} style="color: red;"{% elif crv.lucro < 0 %} style="color: green;"  {% endif %}> 
-                    R$: {{ crv.lucro }}
+                    R$: {{ crv.lucro|floatformat:2 }}
                   </h5>
                 </div>
               </div>
@@ -208,20 +208,20 @@
 
         <!----------------------------------- DOGE (Início) -----------------------------------> 
         <div class="mt-4">
-          <h3 class="ui dividing header blue">Dogecoin ( R$: {{ valor_atual_doge }} )<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header blue">Dogecoin ( R$: {{ valor_atual_doge|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for doge in doge %}
-            <div class="col-sm-3">
+            <div class="col-sm-6">
               <!-- Conteúdo do card -->
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <h5 class="card-title">{{ doge.name_crypto }} - ( {{ doge.name_crypto.crypto_symbol }} )</h5>
-                  <small class="text-muted">Compra: R$  {{ doge.unitary_value }}</small><br>
+                  <small class="text-muted">Compra: R$  {{ doge.unitary_value|floatformat:2 }}</small><br>
                     <small class="text-muted">Quantidade: {{ doge.quantity_crypto }}</small>
                 </div>
                 <div class="card-footer" >
                   <h5  align="right" {% if doge.lucro < 0 %} style="color: red;"{% elif doge.lucro < 0 %} style="color: green;"  {% endif %}> 
-                    R$: {{ doge.lucro }}
+                    R$: {{ doge.lucro|floatformat:2 }}
                   </h5>
                 </div>
               </div>
@@ -233,20 +233,20 @@
 
         <!----------------------------------- MANA (Início) -----------------------------------> 
         <div class="mt-4">
-          <h3 class="ui dividing header blue">MANA ( R$: {{ valor_atual_mana }} )<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header blue">MANA ( R$: {{ valor_atual_mana|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for mana in mana %}
-            <div class="col-sm-3">
+            <div class="col-sm-6">
               <!-- Conteúdo do card -->
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <h5 class="card-title">{{ mana.name_crypto }} - ( {{ mana.name_crypto.crypto_symbol }} )</h5>
-                  <small class="text-muted">Compra: R$  {{ mana.unitary_value }}</small><br>
+                  <small class="text-muted">Compra: R$  {{ mana.unitary_value|floatformat:2 }}</small><br>
                     <small class="text-muted">Quantidade: {{ mana.quantity_crypto }}</small>
                 </div>
                 <div class="card-footer" >
                   <h5  align="right" {% if mana.lucro < 0 %} style="color: red;"{% elif mana.lucro < 0 %} style="color: green;"  {% endif %}> 
-                    R$: {{ mana.lucro }}
+                    R$: {{ mana.lucro|floatformat:2 }}
                   </h5>
                 </div>
               </div>
@@ -258,20 +258,20 @@
 
         <!----------------------------------- SOLANA (Início) -----------------------------------> 
         <div class="mt-4">
-          <h3 class="ui dividing header blue">SOLANA ( R$: {{ valor_atual_solna }} )<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header blue">SOLANA ( R$: {{ valor_atual_solna|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for solana in solana %}
-            <div class="col-sm-3">
+            <div class="col-sm-6">
               <!-- Conteúdo do card -->
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <h5 class="card-title">{{ solana.name_crypto }} - ( {{ solana.name_crypto.crypto_symbol }} )</h5>
-                  <small class="text-muted">Compra: R$  {{ solana.unitary_value }}</small><br>
+                  <small class="text-muted">Compra: R$  {{ solana.unitary_value|floatformat:2 }}</small><br>
                     <small class="text-muted">Quantidade: {{ solana.quantity_crypto }}</small>
                 </div>
                 <div class="card-footer" >
                   <h5  align="right" {% if solana.lucro < 0 %} style="color: red;"{% elif solana.lucro < 0 %} style="color: green;"  {% endif %}> 
-                    R$: {{ solana.lucro }}
+                    R$: {{ solana.lucro|floatformat:2 }}
                   </h5>
                 </div>
               </div>
@@ -283,20 +283,20 @@
 
         <!----------------------------------- SOLANA (Início) -----------------------------------> 
         <div class="mt-4">
-          <h3 class="ui dividing header blue">SushiSwap ( R$: {{ valor_atual_sushi }} )<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header blue">SushiSwap ( R$: {{ valor_atual_sushi|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for sushi in sushi %}
-            <div class="col-sm-3">
+            <div class="col-sm-6">
               <!-- Conteúdo do card -->
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <h5 class="card-title">{{ sushi.name_crypto }} - ( {{ sushi.name_crypto.crypto_symbol }} )</h5>
-                  <small class="text-muted">Compra: R$  {{ sushi.unitary_value }}</small><br>
+                  <small class="text-muted">Compra: R$  {{ sushi.unitary_value|floatformat:2 }}</small><br>
                     <small class="text-muted">Quantidade: {{ sushi.quantity_crypto }}</small>
                 </div>
                 <div class="card-footer" >
                   <h5  align="right" {% if sushi.lucro < 0 %} style="color: red;"{% elif sushi.lucro < 0 %} style="color: green;"  {% endif %}> 
-                    R$: {{ sushi.lucro }}
+                    R$: {{ sushi.lucro|floatformat:2 }}
                   </h5>
                 </div>
               </div>
@@ -309,20 +309,20 @@
 
         <!----------------------------------- WiBX (Início) -----------------------------------> 
         <div class="mt-4">
-          <h3 class="ui dividing header blue">WiBX ( R$: {{ valor_atual_wbx }} )<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header blue">WiBX ( R$: {{ valor_atual_wbx|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for wbx in wbx %}
-            <div class="col-sm-3">
+            <div class="col-sm-6">
               <!-- Conteúdo do card -->
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <h5 class="card-title">{{ wbx.name_crypto }} - ( {{ wbx.name_crypto.crypto_symbol }} )</h5>
-                  <small class="text-muted">Compra: R$  {{ wbx.unitary_value }}</small><br>
+                  <small class="text-muted">Compra: R$  {{ wbx.unitary_value|floatformat:2 }}</small><br>
                     <small class="text-muted">Quantidade: {{ wbx.quantity_crypto }}</small>
                 </div>
                 <div class="card-footer" >
                   <h5  align="right" {% if wbx.lucro < 0 %} style="color: red;"{% elif wbx.lucro < 0 %} style="color: green;"  {% endif %}> 
-                    R$: {{ wbx.lucro }}
+                    R$: {{ wbx.lucro|floatformat:2 }}
                   </h5>
                 </div>
               </div>
@@ -334,20 +334,20 @@
 
         <!----------------------------------- ZRX (Início) -----------------------------------> 
         <div class="mt-4">
-          <h3 class="ui dividing header blue">0X ( R$: {{ valor_atual_zrx }} )<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header blue">0X ( R$: {{ valor_atual_zrx|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for zrx in zrx %}
-            <div class="col-sm-3">
+            <div class="col-sm-6">
               <!-- Conteúdo do card -->
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <h5 class="card-title">{{ zrx.name_crypto }} - ( {{ zrx.name_crypto.crypto_symbol }} )</h5>
-                  <small class="text-muted">Compra: R$  {{ zrx.unitary_value }}</small><br>
-                    <small class="text-muted">Quantidade: {{ zrx.quantity_crypto }}</small>
+                  <small class="text-muted">Compra: R$  {{ zrx.unitary_value|floatformat:2 }}</small><br>
+                    <small class="text-muted">Quantidade: {{ zrx.quantity_crypto}}</small>
                 </div>
                 <div class="card-footer" >
                   <h5  align="right" {% if zrx.lucro < 0 %} style="color: red;"{% elif zrx.lucro < 0 %} style="color: green;"  {% endif %}> 
-                    R$: {{ zrx.lucro }}
+                    R$: {{ zrx.lucro|floatformat:2 }}
                   </h5>
                 </div>
               </div>
