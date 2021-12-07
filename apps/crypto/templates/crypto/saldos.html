@@ -59,7 +59,7 @@
       <div class="card-body">
         <!----------------------------------- CARDANO (Início) -----------------------------------> 
           <div class="mt-4">
-            <h3 class="ui dividing header blue">Cardano ( R$: {{ valor_atual_cardano }} )<a class="anchor" id="content"></a></h3>
+            <h3 class="ui dividing header blue">Cardano ( R$: {{ valor_atual_cardano|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
             <div class="row ">
               {% for cardano in cardano %}
               <div class="col-sm-6">
@@ -67,7 +67,7 @@
                 <div class="card mt-2 mb-2">
                   <div class="card-body">
                     <h5 class="card-title">{{ cardano.name_crypto }} - ( {{ cardano.name_crypto.crypto_symbol }} )</h5>
-                    <small class="text-muted">Compra: R$  {{ cardano.unitary_value }}</small><br>
+                    <small class="text-muted">Compra: R$  {{ cardano.unitary_value|floatformat:2 }}</small><br>
                     <small class="text-muted">Quantidade: {{ cardano.quantity_crypto }}</small>
                   </div>
                   <div class="card-footer" >
@@ -85,7 +85,7 @@
 
         <!----------------------------------- AMP (Início) -----------------------------------> 
         <div class="mt-4">
-          <h3 class="ui dividing header blue">AMP ( R$: {{ valor_atual_amp }} )<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header blue">AMP ( R$: {{ valor_atual_amp|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
           <div class="row ">
             {% for amp in amp %}
             <div class="col-sm-6">
@@ -93,7 +93,7 @@
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <h5 class="card-title">{{ amp.name_crypto }} - ( {{ amp.name_crypto.crypto_symbol }} )</h5>
-                  <small class="text-muted">Compra: R$  {{ amp.unitary_value }}</small><br>
+                  <small class="text-muted">Compra: R$  {{ amp.unitary_value|floatformat:2 }}</small><br>
                     <small class="text-muted">Quantidade: {{ amp.quantity_crypto }}</small>
                 </div>
                 <div class="card-footer" >
