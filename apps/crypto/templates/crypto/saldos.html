@@ -40,6 +40,18 @@
           {% endfor %}
         <!-- Fim AMP -->
 
+         <!-- Inicio AMP -->
+         <h4>Bancor (BNT)</h4>
+         {% for percentual in percentual_bnt %}
+             <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+             </h5>
+         {% endfor %}
+       <!-- Fim AMP -->
+
 
 
 

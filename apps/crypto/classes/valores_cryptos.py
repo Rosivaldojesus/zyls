@@ -14,3 +14,11 @@ class Amp:
           self.url = 'https://www.mercadobitcoin.net/api/AMP/ticker/'
           self.valor_amp = requests.get(self.url).json()['ticker']["last"]
           return self.valor_amp
+
+
+class Bancor:
+     """ AMP """
+     def valor_atual_bnt(self):
+          self.url = 'https://www.mercadobitcoin.net/api/BNT/ticker/'
+          self.valor_bnt = requests.get(self.url).json()['ticker']["last"]
+          return self.valor_bnt

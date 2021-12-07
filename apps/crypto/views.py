@@ -3,7 +3,7 @@ from django.db.models import F, Q
 from .models import Crypto, Active
 import requests
 
-from .classes.valores_cryptos import Cardano, Amp
+from .classes.valores_cryptos import *
 
 
 # Create your views here.
@@ -78,11 +78,13 @@ class Saldos(TemplateView):
 
 
 
-        # BNT
-        bnt = requests.get('https://www.mercadobitcoin.net/api/BNT/ticker/').json()['ticker']["last"]
-        context['valor_atual_bnt'] = bnt
+        """  -->>> BNT --------------------------------------------------- """
+        context['valor_atual_bnt'] = Bancor.valor_atual_bnt(self)
+        context['percentual_bnt'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
+            porcentagem=((100 / F('unitary_value')) * Bancor.valor_atual_bnt(self)) - 100)
+
         context['bnt'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
-            lucro=(bnt * F('quantity_crypto')) - F('purchase_value'))
+            lucro=(Bancor.valor_atual_bnt(self) * F('quantity_crypto')) - F('purchase_value'))
 
         # BTC
         btc = requests.get('https://www.mercadobitcoin.net/api/BTC/ticker/').json()['ticker']["last"]
