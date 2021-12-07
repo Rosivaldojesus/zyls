@@ -18,12 +18,12 @@
         
         <!-- Inicio Cardano -->
         <h4>Cardano</h4>
-          {% for percentual in percentual %}
+          {% for percentual in percentual_ada %}
               <h5 {% if percentual.lucro < 0 %} style="color: red;"
                {% else %} style="color: green;"
                {% endif %}>
                {{ percentual.purchase_date }}:
-                {{percentual.lucro|floatformat:2}}%
+                {{percentual.porcentagem|floatformat:2}}%
 
               </h5>
           {% endfor %}
@@ -31,12 +31,12 @@
 
         <!-- Inicio AMP -->
         <h4>amp</h4>
-          {% for percentual in percentual %}
+          {% for amp in valor_atual_amp %}
               <h5 {% if percentual.lucro < 0 %} style="color: red;"
                {% else %} style="color: green;"
                {% endif %}>
                {{ percentual.purchase_date }}:
-                {{percentual.porcentagem|floatformat:2}}%
+                {{amp.porcentagem|floatformat:2}}%
 
               </h5>
           {% endfor %}
