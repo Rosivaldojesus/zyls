@@ -63,9 +63,13 @@ class Saldos(TemplateView):
         context = super(Saldos, self).get_context_data()
 
         #Cardano
-        context['valor_atual_cardano'] = Cardano.ValorAtualCardano(self)
+        context['valor_atual_cardano'] = Cardano.valor_atual_cardano(self)
+
+        context['percentual'] = Active.objects.filter(name_crypto__crypto_symbol='ADA').annotate(
+            lucro=(100 / F('unitary_value')) * Cardano.valor_atual_cardano(self))
+
         context['cardano'] = Active.objects.filter(name_crypto__crypto_symbol='ADA')\
-        .annotate(lucro=(Cardano.ValorAtualCardano(self) * F('quantity_crypto')) - F('purchase_value'))
+        .annotate(lucro=(Cardano.valor_atual_cardano(self) * F('quantity_crypto')) - F('purchase_value'))
 
 
 
