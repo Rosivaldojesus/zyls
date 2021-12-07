@@ -72,12 +72,12 @@ class Saldos(TemplateView):
 
 
         # AMP
-        amp = Amp.valor_atual_amp(self)
-        context['valor_atual_amp'] = amp
-        context['percentual'] = Active.objects.filter(name_crypto__crypto_symbol='AMP').annotate(
-            lucro=((100 / F('unitary_value')) * valor_cardano) - 100)
+        valor_amp = Amp.valor_atual_amp(self)
+        context['valor_atual_amp'] = valor_amp
+        # context['percentual'] = Active.objects.filter(name_crypto__crypto_symbol='AMP').annotate(
+        #     lucro=((100 / F('unitary_value')) * valor_amp) - 100)
         context['amp'] = Active.objects.filter(name_crypto__crypto_symbol='AMP').annotate(
-            lucro=(amp * F('quantity_crypto')) - F('purchase_value'))
+            lucro=(valor_amp * F('quantity_crypto')) - F('purchase_value'))
 
         # BNT
         bnt = requests.get('https://www.mercadobitcoin.net/api/BNT/ticker/').json()['ticker']["last"]
