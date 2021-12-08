@@ -69,6 +69,7 @@ class Saldos(TemplateView):
         context['cardano'] = Active.objects.filter(name_crypto__crypto_symbol='ADA').annotate(
             lucro=(Cardano.valor_atual_cardano(self) * F('quantity_crypto')) - F('purchase_value'))
 
+
         """  -->>> AMP --------------------------------------------------- """
         context['valor_atual_amp'] = Amp.valor_atual_amp(self)
         context['percentual_amp'] = Active.objects.filter(name_crypto__crypto_symbol='AMP').annotate(
@@ -77,21 +78,21 @@ class Saldos(TemplateView):
             lucro=(Amp.valor_atual_amp(self) * F('quantity_crypto')) - F('purchase_value'))
 
 
-
         """  -->>> BNT --------------------------------------------------- """
         context['valor_atual_bnt'] = Bancor.valor_atual_bnt(self)
         context['percentual_bnt'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
             porcentagem=((100 / F('unitary_value')) * Bancor.valor_atual_bnt(self)) - 100)
-
         context['bnt'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
             lucro=(Bancor.valor_atual_bnt(self) * F('quantity_crypto')) - F('purchase_value'))
 
+
         """  -->>> Bitcoin --------------------------------------------------- """
         context['valor_atual_btc'] = Bitcoin.valor_atual_btc(self)
-        context['percentual_btc'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
+        context['percentual_btc'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
             porcentagem=((100 / F('unitary_value')) * Bitcoin.valor_atual_btc(self)) - 100)
         context['btc'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
             lucro=(Bitcoin.valor_atual_btc(self) * F('quantity_crypto')) - F('purchase_value'))
+
 
         """  -->>> Manchester City FC --------------------------------------------------- """
         context['valor_atual_city'] = City.valor_atual_city(self)
@@ -100,12 +101,14 @@ class Saldos(TemplateView):
         context['city'] = Active.objects.filter(name_crypto__crypto_symbol='CITYFC').annotate(
             lucro=(City.valor_atual_city(self) * F('quantity_crypto')) - F('purchase_value'))
 
+
         """  -->>> Curve Dao Token --------------------------------------------------- """
         context['valor_atual_crv'] = CurveDao.valor_atual_crv(self)
         context['percentual_crv'] = Active.objects.filter(name_crypto__crypto_symbol='CRV').annotate(
             porcentagem=((100 / F('unitary_value')) * CurveDao.valor_atual_crv(self)) - 100)
         context['crv'] = Active.objects.filter(name_crypto__crypto_symbol='CRV').annotate(
             lucro=(CurveDao.valor_atual_crv(self) * F('quantity_crypto')) - F('purchase_value'))
+
 
         """  -->>> Dogecoin --------------------------------------------------- """
         context['valor_atual_doge'] = Dogecoin.valor_atual_doge(self)
@@ -114,6 +117,7 @@ class Saldos(TemplateView):
         context['doge'] = Active.objects.filter(name_crypto__crypto_symbol='DOGE').annotate(
             lucro=(Dogecoin.valor_atual_doge(self) * F('quantity_crypto')) - F('purchase_value'))
 
+
         """  -->>> MANA --------------------------------------------------- """
         context['valor_atual_mana'] = Mana.valor_atual_mana(self)
         context['percentual_mana'] = Active.objects.filter(name_crypto__crypto_symbol='MANA').annotate(
@@ -121,12 +125,14 @@ class Saldos(TemplateView):
         context['mana'] = Active.objects.filter(name_crypto__crypto_symbol='MANA').annotate(
             lucro=(Mana.valor_atual_mana(self) * F('quantity_crypto')) - F('purchase_value'))
 
+
         """"  -->>> Solana --------------------------------------------------- """
         context['valor_atual_solana'] = Solana.valor_atual_sol(self)
         context['percentual_sol'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
             porcentagem=((100 / F('unitary_value')) * Mana.valor_atual_mana(self)) - 100)
         context['solana'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
             lucro=(Solana.valor_atual_sol(self) * F('quantity_crypto')) - F('purchase_value'))
+
 
         """"  -->>> SUSHI --------------------------------------------------- """
         context['valor_atual_sushi'] = SushiSwap.valor_atual_sushi(self)
@@ -143,12 +149,11 @@ class Saldos(TemplateView):
         context['wbx'] = Active.objects.filter(name_crypto__crypto_symbol='WBX').annotate(
             lucro=(WiBX.valor_atual_wbx(self) * F('quantity_crypto')) - F('purchase_value'))
 
+
         """"  -->>> ZRX --------------------------------------------------- """
         context['valor_atual_zrx'] = ZRX.valor_atual_zrx(self)
-
         context['percentual_wbx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
             porcentagem=((100 / F('unitary_value')) * ZRX.valor_atual_zrx(self)) - 100)
-
         context['zrx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
             lucro=(ZRX.valor_atual_zrx(self) * F('quantity_crypto')) - F('purchase_value'))
 
