@@ -12,12 +12,12 @@
 <!-- INICIO BODY -->
 
 <div class="row">
-  <div class="col-sm-4">
-    <div class="card">
+  <div class="col-sm-4 mb-4">
+    <div class="card  shadow">
       <div class="card-body">
         
         <!-- Inicio Cardano -->
-        <h4>Cardano</h4>
+        <h3 class="ui dividing header violet">Cardano (ADA)<a class="anchor" id="content"></a></h3>
           {% for percentual in percentual_ada %}
               <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
                {% else %} style="color: green;"
@@ -29,7 +29,7 @@
         <!-- Fim Cardano -->
 
         <!-- Inicio AMP -->
-        <h4>amp</h4>
+        <h3 class="ui dividing header violet">Amp (AMP)<a class="anchor" id="content"></a></h3>
           {% for percentual in percentual_amp %}
               <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
                {% else %} style="color: green;"
@@ -41,7 +41,7 @@
         <!-- Fim AMP -->
 
         <!-- Inicio BNT -->
-         <h4>Bancor (BNT)</h4>
+         <h3 class="ui dividing header violet">Bancor (BNT)<a class="anchor" id="content"></a></h3>
          {% for percentual in percentual_bnt %}
              <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
               {% else %} style="color: green;"
@@ -53,7 +53,7 @@
         <!-- Fim BNT -->
 
         <!-- Inicio BTC -->
-        <h4>Bitcoin (BTC)</h4>
+        <h3 class="ui dividing header violet">Bitcoin (BTC)<a class="anchor" id="content"></a></h3>
         {% for percentual in percentual_btc %}
             <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
               {% else %} style="color: green;"
@@ -65,7 +65,7 @@
         <!-- Fim BTC -->
 
         <!-- Inicio CITY -->
-        <h4>Manchester City (CITY)</h4>
+        <h3 class="ui dividing header violet">Manchester City (CITY)<a class="anchor" id="content"></a></h3>
         {% for percentual in percentual_city %}
             <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
               {% else %} style="color: green;"
@@ -75,6 +75,55 @@
             </h5>
         {% endfor %}
         <!-- Fim CITY -->
+
+        <!-- Inicio Curve Dao -->
+        <h3 class="ui dividing header violet">Curve Dao Token (CRV)<a class="anchor" id="content"></a></h3>
+        {% for percentual in percentual_crv %}
+            <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+            </h5>
+        {% endfor %}
+        <!-- Fim Curve Dao -->
+
+        <!-- Inicio Curve Dogecoin -->
+        <h3 class="ui dividing header violet">Dogecoin (DOGE)<a class="anchor" id="content"></a></h3>
+        {% for percentual in percentual_doge %}
+            <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+            </h5>
+        {% endfor %}
+        <!-- Fim Curve Dogecoin -->
+
+        <!-- Inicio MANA -->
+        <h3 class="ui dividing header violet">Decetreland (MANA)<a class="anchor" id="content"></a></h3>
+        {% for percentual in percentual_mana %}
+            <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+            </h5>
+        {% endfor %}
+        <!-- Fim Curve MANA -->
+
+        <!-- Inicio Solana -->
+        <h3 class="ui dividing header violet">Solana (SOL)<a class="anchor" id="content"></a></h3>
+        {% for percentual in percentual_sol %}
+            <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+            </h5>
+        {% endfor %}
+        <!-- Fim Curve Solana -->
+
 
 
 
@@ -91,7 +140,7 @@
 
 
   <div class="col-sm-8">
-    <div class="card">
+    <div class="card  shadow">
       <div class="card-body">
         <!----------------------------------- CARDANO (Início) -----------------------------------> 
           <div class="mt-4">

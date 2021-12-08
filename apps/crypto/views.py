@@ -95,34 +95,40 @@ class Saldos(TemplateView):
 
         """  -->>> Manchester City FC --------------------------------------------------- """
         context['valor_atual_city'] = City.valor_atual_city(self)
-        context['percentual_city'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
+        context['percentual_city'] = Active.objects.filter(name_crypto__crypto_symbol='CITYFC').annotate(
             porcentagem=((100 / F('unitary_value')) * City.valor_atual_city(self)) - 100)
-        context['city'] = Active.objects.filter(name_crypto__crypto_symbol='CITY').annotate(
+        context['city'] = Active.objects.filter(name_crypto__crypto_symbol='CITYFC').annotate(
             lucro=(City.valor_atual_city(self) * F('quantity_crypto')) - F('purchase_value'))
 
-        # CRV
-        crv = requests.get('https://www.mercadobitcoin.net/api/CRV/ticker/').json()['ticker']["last"]
-        context['valor_atual_crv'] = crv
+        """  -->>> Curve Dao Token --------------------------------------------------- """
+        context['valor_atual_crv'] = CurveDao.valor_atual_crv(self)
+        context['percentual_crv'] = Active.objects.filter(name_crypto__crypto_symbol='CRV').annotate(
+            porcentagem=((100 / F('unitary_value')) * CurveDao.valor_atual_crv(self)) - 100)
         context['crv'] = Active.objects.filter(name_crypto__crypto_symbol='CRV').annotate(
-            lucro=(crv * F('quantity_crypto')) - F('purchase_value'))
+            lucro=(CurveDao.valor_atual_crv(self) * F('quantity_crypto')) - F('purchase_value'))
 
-        # DOGE
-        doge = requests.get('https://www.mercadobitcoin.net/api/DOGE/ticker/').json()['ticker']["last"]
-        context['valor_atual_doge'] = doge
+        """  -->>> Dogecoin --------------------------------------------------- """
+        context['valor_atual_doge'] = Dogecoin.valor_atual_doge(self)
+        context['percentual_doge'] = Active.objects.filter(name_crypto__crypto_symbol='DOGE').annotate(
+            porcentagem=((100 / F('unitary_value')) * Dogecoin.valor_atual_doge(self)) - 100)
         context['doge'] = Active.objects.filter(name_crypto__crypto_symbol='DOGE').annotate(
-            lucro=(doge * F('quantity_crypto')) - F('purchase_value'))
+            lucro=(Dogecoin.valor_atual_doge(self) * F('quantity_crypto')) - F('purchase_value'))
 
-        # MANA
-        mana = requests.get('https://www.mercadobitcoin.net/api/MANA/ticker/').json()['ticker']["last"]
-        context['valor_atual_mana'] = mana
+        """  -->>> MANA --------------------------------------------------- """
+        context['valor_atual_mana'] = Mana.valor_atual_mana(self)
+        context['percentual_mana'] = Active.objects.filter(name_crypto__crypto_symbol='MANA').annotate(
+            porcentagem=((100 / F('unitary_value')) * Mana.valor_atual_mana(self)) - 100)
         context['mana'] = Active.objects.filter(name_crypto__crypto_symbol='MANA').annotate(
-            lucro=(mana * F('quantity_crypto')) - F('purchase_value'))
+            lucro=(Mana.valor_atual_mana(self) * F('quantity_crypto')) - F('purchase_value'))
 
-        # SOLANA
-        solana = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()['ticker']["last"]
-        context['valor_atual_solana'] = solana
+        """"  -->>> Solana --------------------------------------------------- """
+        context['valor_atual_solana'] = Solana.valor_atual_sol(self)
+        context['percentual_sol'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
+            porcentagem=((100 / F('unitary_value')) * Mana.valor_atual_mana(self)) - 100)
         context['solana'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
-            lucro=(solana * F('quantity_crypto')) - F('purchase_value'))
+            lucro=(Solana.valor_atual_sol(self) * F('quantity_crypto')) - F('purchase_value'))
+
+
 
         # SUSHI
         sushi = requests.get('https://www.mercadobitcoin.net/api/SUSHI/ticker/').json()['ticker']["last"]

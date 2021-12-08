@@ -37,3 +37,34 @@ class City:
           self.url = 'https://www.mercadobitcoin.net/api/CITYFT/ticker/'
           self.valor_city = requests.get(self.url).json()['ticker']["last"]
           return self.valor_city
+
+class CurveDao:
+     """ Curve Dao Token """
+     def valor_atual_crv(self):
+          self.url = 'https://www.mercadobitcoin.net/api/CRV/ticker/'
+          self.valor_crv = requests.get(self.url).json()['ticker']["last"]
+          return self.valor_crv
+
+
+class Dogecoin:
+     """ Dogecoin """
+     def valor_atual_doge(self):
+          self.url = 'https://www.mercadobitcoin.net/api/DOGE/ticker/'
+          self.valor_doge = requests.get(self.url).json()['ticker']["last"]
+          return self.valor_doge
+
+
+
+class Mana:
+     """ MANA """
+     def valor_atual_mana(self):
+          self.url = 'https://www.mercadobitcoin.net/api/MANA/ticker/'
+          self.valor_mana = requests.get(self.url).json()['ticker']["last"]
+          return self.valor_mana
+
+
+class Solana:
+     def valor_atual_sol(self):
+          self.url = 'https://www.mercadobitcoin.net/api/SOL/ticker/'
+          self.valor_sol = requests.get(self.url).json()['ticker']["last"]
+          return self.valor_sol
