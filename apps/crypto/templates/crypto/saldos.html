@@ -124,6 +124,44 @@
         {% endfor %}
         <!-- Fim Curve Solana -->
 
+        <!-- Inicio SushiSwap-->
+        <h3 class="ui dividing header violet">SushiSwap (SUSHI)<a class="anchor" id="content"></a></h3>
+        {% for percentual in percentual_sushi %}
+            <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+            </h5>
+        {% endfor %}
+        <!-- Fim SushiSwap -->
+
+
+        <!-- Inicio WiBX-->
+        <h3 class="ui dividing header violet">WiBX (WBX)<a class="anchor" id="content"></a></h3>
+        {% for percentual in percentual_wbx %}
+            <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+            </h5>
+        {% endfor %}
+        <!-- Fim WiBX -->
+
+
+        <!-- Inicio ZRX-->
+        <h3 class="ui dividing header violet">ZRX (ox)<a class="anchor" id="content"></a></h3>
+        {% for percentual in percentual_zrx %}
+            <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+            </h5>
+        {% endfor %}
+        <!-- Fim WiBX -->
+
 
 
 

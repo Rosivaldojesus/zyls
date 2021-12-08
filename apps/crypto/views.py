@@ -128,25 +128,29 @@ class Saldos(TemplateView):
         context['solana'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
             lucro=(Solana.valor_atual_sol(self) * F('quantity_crypto')) - F('purchase_value'))
 
-
-
-        # SUSHI
-        sushi = requests.get('https://www.mercadobitcoin.net/api/SUSHI/ticker/').json()['ticker']["last"]
-        context['valor_atual_sushi'] = sushi
+        """"  -->>> SUSHI --------------------------------------------------- """
+        context['valor_atual_sushi'] = SushiSwap.valor_atual_sushi(self)
+        context['percentual_suhi'] = Active.objects.filter(name_crypto__crypto_symbol='SUHI').annotate(
+            porcentagem=((100 / F('unitary_value')) * SushiSwap.valor_atual_sushi(self)) - 100)
         context['sushi'] = Active.objects.filter(name_crypto__crypto_symbol='SUSHI').annotate(
-            lucro=(sushi * F('quantity_crypto')) - F('purchase_value'))
+            lucro=(SushiSwap.valor_atual_sushi(self) * F('quantity_crypto')) - F('purchase_value'))
 
-        # WBX
-        wbx = requests.get('https://www.mercadobitcoin.net/api/WBX/ticker/').json()['ticker']["last"]
-        context['valor_atual_wb'] = wbx
+
+        """"  -->>> WiBX --------------------------------------------------- """
+        context['valor_atual_wbx'] = WiBX.valor_atual_wbx(self)
+        context['percentual_wbx'] = Active.objects.filter(name_crypto__crypto_symbol='WBX').annotate(
+            porcentagem=((100 / F('unitary_value')) * WiBX.valor_atual_wbx(self)) - 100)
         context['wbx'] = Active.objects.filter(name_crypto__crypto_symbol='WBX').annotate(
-            lucro=(wbx * F('quantity_crypto')) - F('purchase_value'))
+            lucro=(WiBX.valor_atual_wbx(self) * F('quantity_crypto')) - F('purchase_value'))
 
-        # ZRX
-        zrx = requests.get('https://www.mercadobitcoin.net/api/ZRX/ticker/').json()['ticker']["last"]
-        context['valor_atual_zrx'] = zrx
+        """"  -->>> ZRX --------------------------------------------------- """
+        context['valor_atual_zrx'] = ZRX.valor_atual_zrx(self)
+
+        context['percentual_wbx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
+            porcentagem=((100 / F('unitary_value')) * ZRX.valor_atual_zrx(self)) - 100)
+
         context['zrx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
-            lucro=(zrx * F('quantity_crypto')) - F('purchase_value'))
+            lucro=(ZRX.valor_atual_zrx(self) * F('quantity_crypto')) - F('purchase_value'))
 
 
         return context
