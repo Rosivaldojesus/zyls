@@ -1,7 +1,7 @@
 import requests
 
 class Cardano:
-     """ Valores referentes a Cardano"""
+     """ Cardano """
      def valor_atual_cardano(self):
           self.url = 'https://www.mercadobitcoin.net/api/ADA/ticker/'
           self.valor_cardano = requests.get(self.url).json()['ticker']["last"]
@@ -17,8 +17,15 @@ class Amp:
 
 
 class Bancor:
-     """ AMP """
+     """ Bancor """
      def valor_atual_bnt(self):
           self.url = 'https://www.mercadobitcoin.net/api/BNT/ticker/'
           self.valor_bnt = requests.get(self.url).json()['ticker']["last"]
           return self.valor_bnt
+
+class Bitcoin:
+     """ Bitcoin """
+     def valor_atual_btc(self):
+          self.url = 'https://www.mercadobitcoin.net/api/BTC/ticker/'
+          self.valor_btc = requests.get(self.url).json()['ticker']["last"]
+          return self.valor_btc

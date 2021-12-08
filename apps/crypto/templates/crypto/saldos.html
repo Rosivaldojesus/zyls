@@ -40,7 +40,7 @@
           {% endfor %}
         <!-- Fim AMP -->
 
-         <!-- Inicio AMP -->
+        <!-- Inicio BNT -->
          <h4>Bancor (BNT)</h4>
          {% for percentual in percentual_bnt %}
              <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
@@ -50,7 +50,19 @@
 
              </h5>
          {% endfor %}
-       <!-- Fim AMP -->
+        <!-- Fim BNT -->
+
+        <!-- Inicio BTC -->
+        <h4>Bitcoin (BTC)</h4>
+        {% for percentual in percentual_btc %}
+            <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+            </h5>
+        {% endfor %}
+        <!-- Fim BTC -->
 
 
 

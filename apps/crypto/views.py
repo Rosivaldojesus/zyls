@@ -86,11 +86,12 @@ class Saldos(TemplateView):
         context['bnt'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
             lucro=(Bancor.valor_atual_bnt(self) * F('quantity_crypto')) - F('purchase_value'))
 
-        # BTC
-        btc = requests.get('https://www.mercadobitcoin.net/api/BTC/ticker/').json()['ticker']["last"]
-        context['valor_atual_btc'] = btc
+        """  -->>> Bitcoin --------------------------------------------------- """
+        context['valor_atual_btc'] = Bitcoin.valor_atual_btc(self)
+        context['percentual_btc'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
+            porcentagem=((100 / F('unitary_value')) * Bitcoin.valor_atual_btc(self)) - 100)
         context['btc'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
-            lucro=(btc * F('quantity_crypto')) - F('purchase_value'))
+            lucro=(Bitcoin.valor_atual_btc(self) * F('quantity_crypto')) - F('purchase_value'))
 
         # CITY
         city = requests.get('https://www.mercadobitcoin.net/api/CITYFT/ticker/').json()['ticker']["last"]
