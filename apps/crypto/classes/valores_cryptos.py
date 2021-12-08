@@ -1,11 +1,11 @@
 import requests
 
-class Cardano:
 
-     def valor_atual_cardano(self):
-          self.url = 'https://www.mercadobitcoin.net/api/ADA/ticker/'
-          self.valor_cardano = requests.get(self.url).json()['ticker']["last"]
-          return self.valor_cardano
+
+def valor_atual_cardano():
+     url = 'https://www.mercadobitcoin.net/api/ADA/ticker/'
+     valor_cardano = requests.get(url).json()['ticker']["last"]
+     return valor_cardano
 
 
 class Amp:
