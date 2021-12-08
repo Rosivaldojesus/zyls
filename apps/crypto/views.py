@@ -129,7 +129,7 @@ class Saldos(TemplateView):
         """"  -->>> Solana --------------------------------------------------- """
         context['valor_atual_solana'] = Solana.valor_atual_sol(self)
         context['percentual_sol'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
-            porcentagem=((100 / F('unitary_value')) * Mana.valor_atual_mana(self)) - 100)
+            porcentagem=((100 / F('unitary_value')) * Solana.valor_atual_sol(self)) - 100)
         context['solana'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
             lucro=(Solana.valor_atual_sol(self) * F('quantity_crypto')) - F('purchase_value'))
 
