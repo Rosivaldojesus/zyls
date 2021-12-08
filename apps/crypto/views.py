@@ -93,11 +93,12 @@ class Saldos(TemplateView):
         context['btc'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
             lucro=(Bitcoin.valor_atual_btc(self) * F('quantity_crypto')) - F('purchase_value'))
 
-        # CITY
-        city = requests.get('https://www.mercadobitcoin.net/api/CITYFT/ticker/').json()['ticker']["last"]
-        context['valor_atual_city'] = city
+        """  -->>> Manchester City FC --------------------------------------------------- """
+        context['valor_atual_city'] = City.valor_atual_city(self)
+        context['percentual_city'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
+            porcentagem=((100 / F('unitary_value')) * City.valor_atual_city(self)) - 100)
         context['city'] = Active.objects.filter(name_crypto__crypto_symbol='CITY').annotate(
-            lucro=(city * F('quantity_crypto')) - F('purchase_value'))
+            lucro=(City.valor_atual_city(self) * F('quantity_crypto')) - F('purchase_value'))
 
         # CRV
         crv = requests.get('https://www.mercadobitcoin.net/api/CRV/ticker/').json()['ticker']["last"]

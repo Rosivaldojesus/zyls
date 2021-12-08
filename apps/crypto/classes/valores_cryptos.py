@@ -29,3 +29,11 @@ class Bitcoin:
           self.url = 'https://www.mercadobitcoin.net/api/BTC/ticker/'
           self.valor_btc = requests.get(self.url).json()['ticker']["last"]
           return self.valor_btc
+
+
+class City:
+     """ Manchester City """
+     def valor_atual_city(self):
+          self.url = 'https://www.mercadobitcoin.net/api/CITYFT/ticker/'
+          self.valor_city = requests.get(self.url).json()['ticker']["last"]
+          return self.valor_city

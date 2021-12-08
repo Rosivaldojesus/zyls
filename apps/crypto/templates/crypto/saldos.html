@@ -64,6 +64,18 @@
         {% endfor %}
         <!-- Fim BTC -->
 
+        <!-- Inicio CITY -->
+        <h4>Manchester City (CITY)</h4>
+        {% for percentual in percentual_city %}
+            <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+            </h5>
+        {% endfor %}
+        <!-- Fim CITY -->
+
 
 
 
