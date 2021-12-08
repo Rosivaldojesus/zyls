@@ -7,7 +7,7 @@ def valor_atual_cardano():
      return valor_cardano
 
 
-def valor_atual_amp(self):
+def valor_atual_amp():
      url = 'https://www.mercadobitcoin.net/api/AMP/ticker/'
      valor_amp = requests.get(url).json()['ticker']["last"]
      return valor_amp
