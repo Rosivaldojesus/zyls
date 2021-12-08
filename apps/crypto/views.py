@@ -136,7 +136,7 @@ class Saldos(TemplateView):
 
         """"  -->>> SUSHI --------------------------------------------------- """
         context['valor_atual_sushi'] = SushiSwap.valor_atual_sushi(self)
-        context['percentual_suhi'] = Active.objects.filter(name_crypto__crypto_symbol='SUSHI').annotate(
+        context['percentual_sushi'] = Active.objects.filter(name_crypto__crypto_symbol='SUSHI').annotate(
             porcentagem=((100 / F('unitary_value')) * SushiSwap.valor_atual_sushi(self)) - 100)
         context['sushi'] = Active.objects.filter(name_crypto__crypto_symbol='SUSHI').annotate(
             lucro=(SushiSwap.valor_atual_sushi(self) * F('quantity_crypto')) - F('purchase_value'))
