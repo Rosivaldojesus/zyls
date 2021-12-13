@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+import json
 from django.db.models import F, Q
 from .models import Crypto, Active
 import requests
@@ -20,7 +22,6 @@ class Index(TemplateView):
         context['crypt'] = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
         crypt = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
         context['solana'] = crypt['ticker']["last"]
-
 
         return context
 
@@ -51,9 +52,9 @@ class Carteira(TemplateView):
             lucro=(F('name_crypto__value_current_cripto') * F('quantity_crypto')) - F('purchase_value')
         ).order_by('name_crypto__crypto_symbol')
 
-
-
         return context
+
+
 
 class Saldos(TemplateView):
     model = Active
@@ -157,5 +158,23 @@ class Saldos(TemplateView):
         context['zrx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
             lucro=(valor_atual_zrx() * F('quantity_crypto')) - F('purchase_value'))
 
-
         return context
+
+
+class Dashboard(TemplateView):
+    model = Active
+    template_name = "crypto/dashboard.html"
+
+
+    def get_context_data(self, **kwargs):
+        context = super(Dashboard, self).get_context_data()
+
+        queryset = Active.objects.all()
+        names = [obj.name_crypto.name_crypto for obj in queryset]
+        context['moedas'] = names
+
+        context = {
+            'names': json.dumps(names),
+        }
+
+        context
