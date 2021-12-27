@@ -100,6 +100,20 @@
         {% endfor %}
         <!-- Fim Curve Dogecoin -->
 
+        <!-- Inicio Kyber Network -->
+        <h3 class="ui dividing header violet">Kyber Network (KNC)<a class="anchor" id="content"></a></h3>
+        {% for percentual in percentual_knc %}
+            <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+            </h5>
+        {% endfor %}
+        <!-- Fim Curve Kyber Network -->
+
+
+
         <!-- Inicio MANA -->
         <h3 class="ui dividing header violet">Decetreland (MANA)<a class="anchor" id="content"></a></h3>
         {% for percentual in percentual_mana %}
@@ -112,6 +126,18 @@
         {% endfor %}
         <!-- Fim Curve MANA -->
 
+        <!-- Inicio Ren-->
+        <h3 class="ui dividing header violet">Ren (REN)<a class="anchor" id="content"></a></h3>
+        {% for percentual in percentual_ren %}
+            <h5 {% if percentual.porcentagem < 0 %} style="color: red;"
+              {% else %} style="color: green;"
+              {% endif %}>
+              {{ percentual.purchase_date }}: {{percentual.porcentagem|floatformat:2}}%
+
+            </h5>
+        {% endfor %}
+        <!-- Fim Curve Ren -->
+
         <!-- Inicio Solana -->
         <h3 class="ui dividing header violet">Solana (SOL)<a class="anchor" id="content"></a></h3>
         {% for percentual in percentual_sol %}
@@ -123,6 +149,8 @@
             </h5>
         {% endfor %}
         <!-- Fim Curve Solana -->
+
+
 
         <!-- Inicio SushiSwap-->
         <h3 class="ui dividing header violet">SushiSwap (SUSHI)<a class="anchor" id="content"></a></h3>
@@ -352,7 +380,34 @@
             {% endfor %}
           </div>
         </div>
-        <!----------------------------------- DOGE (Fim) -----------------------------------> 
+        <!----------------------------------- DOGE (Fim) ----------------------------------->
+
+        <!----------------------------------- Kyber Network (Início) ----------------------------------->
+        <div class="mt-4">
+          <h3 class="ui dividing header blue">Kyber Network ( R$: {{ valor_atual_knc|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
+          <div class="row ">
+            {% for knc in knc %}
+            <div class="col-sm-6">
+              <!-- Conteúdo do card -->
+              <div class="card mt-2 mb-2">
+                <div class="card-body">
+                  <h5 class="card-title">{{ knc.name_crypto }} - ( {{ knc.name_crypto.crypto_symbol }} )</h5>
+                  <small class="text-muted">Compra: R$  {{ knc.unitary_value|floatformat:2 }}</small><br>
+                    <small class="text-muted">Quantidade: {{ knc.quantity_crypto }}</small>
+                </div>
+                <div class="card-footer" >
+                  <h5  align="right" {% if knc.lucro < 0 %} style="color: red;"{% elif knc.lucro < 0 %} style="color: green;"  {% endif %}>
+                    R$: {{ knc.lucro|floatformat:2 }}
+                  </h5>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <!----------------------------------- Kyber Network (Fim) ----------------------------------->
+
+
 
         <!----------------------------------- MANA (Início) -----------------------------------> 
         <div class="mt-4">
@@ -377,7 +432,35 @@
             {% endfor %}
           </div>
         </div>
-        <!----------------------------------- MANA (Fim) ----------------------------------->  
+        <!----------------------------------- MANA (Fim) ----------------------------------->
+
+
+        <!----------------------------------- REN (Início) ----------------------------------->
+        <div class="mt-4">
+          <h3 class="ui dividing header blue">REN ( R$: {{ valor_atual_ren|floatformat:2 }} )<a class="anchor" id="content"></a></h3>
+          <div class="row ">
+            {% for ren in ren %}
+            <div class="col-sm-6">
+              <!-- Conteúdo do card -->
+              <div class="card mt-2 mb-2">
+                <div class="card-body">
+                  <h5 class="card-title">{{ ren.name_crypto }} - ( {{ ren.name_crypto.crypto_symbol }} )</h5>
+                  <small class="text-muted">Compra: R$  {{ ren.unitary_value|floatformat:2 }}</small><br>
+                    <small class="text-muted">Quantidade: {{ ren.quantity_crypto }}</small>
+                </div>
+                <div class="card-footer" >
+                  <h5  align="right" {% if ren.lucro < 0 %} style="color: red;"{% elif ren.lucro < 0 %} style="color: green;"  {% endif %}>
+                    R$: {{ ren.lucro|floatformat:2 }}
+                  </h5>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <!----------------------------------- REN (Fim) ----------------------------------->
+
+
 
         <!----------------------------------- SOLANA (Início) -----------------------------------> 
         <div class="mt-4">
