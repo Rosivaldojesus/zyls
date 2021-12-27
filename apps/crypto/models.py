@@ -17,6 +17,8 @@ class Crypto(models.Model):
     crypto_symbol = models.CharField(max_length=10, verbose_name='Simbolo da Crypto')
     category = models.ForeignKey(CategoryCripto, on_delete=models.DO_NOTHING, blank=True, null=True)
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Criptomoeda'
 
@@ -30,6 +32,8 @@ class Active(models.Model):
     purchase_value = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     quantity_crypto = models.DecimalField(max_digits=19, decimal_places=14, default=0)
     purchase_date = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Ativos Comprados'

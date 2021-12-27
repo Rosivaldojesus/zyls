@@ -153,7 +153,7 @@ class Saldos(TemplateView):
 
         """"  -->>> ZRX --------------------------------------------------- """
         context['valor_atual_zrx'] = valor_atual_zrx()
-        context['percentual_wbx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
+        context['percentual_zrx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
             porcentagem=((100 / F('unitary_value')) * valor_atual_zrx()) - 100)
         context['zrx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
             lucro=(valor_atual_zrx() * F('quantity_crypto')) - F('purchase_value'))

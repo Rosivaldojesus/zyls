@@ -9,14 +9,17 @@ from .forms import PostCreateForm, PostUpdateForm
 from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 from django.db.models import Q, Count, Case, When
+from time import time
 
 
 # Create your views here.
 class PostListView(ListView):
+
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'posts'
 
+    tempo_inicial = time()
     def get_queryset(self):
         qs = super().get_queryset()
         qs = qs.order_by('-id').filter(publicado_post=True)
@@ -28,6 +31,10 @@ class PostListView(ListView):
             )
         )
         return qs
+
+    tempo_final = time()
+
+    print(f'Tempo de execução: {tempo_final - tempo_inicial}' )
 
 
 class PostDetalhesView(DetailView):
