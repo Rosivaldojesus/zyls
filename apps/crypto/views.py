@@ -119,7 +119,7 @@ class Saldos(TemplateView):
             lucro=(valor_atual_doge() * F('quantity_crypto')) - F('purchase_value'))
 
         """  -->>> Kyber Network --------------------------------------------------- """
-        context['valor_atual_knc'] = valor_atual_doge()
+        context['valor_atual_knc'] = valor_atual_knc()
         context['percentual_knc'] = Active.objects.filter(name_crypto__crypto_symbol='KNC').annotate(
             porcentagem=((100 / F('unitary_value')) * valor_atual_doge()) - 100)
         context['knc'] = Active.objects.filter(name_crypto__crypto_symbol='KNC').annotate(
@@ -134,7 +134,7 @@ class Saldos(TemplateView):
             lucro=(valor_atual_mana() * F('quantity_crypto')) - F('purchase_value'))
 
         """"  -->>> REN --------------------------------------------------- """
-        context['valor_atual_ren'] = valor_atual_sol()
+        context['valor_atual_ren'] = valor_atual_ren()
         context['percentual_ren'] = Active.objects.filter(name_crypto__crypto_symbol='REN').annotate(
             porcentagem=((100 / F('unitary_value')) * valor_atual_sol()) - 100)
         context['ren'] = Active.objects.filter(name_crypto__crypto_symbol='REN').annotate(
@@ -142,7 +142,7 @@ class Saldos(TemplateView):
 
 
         """"  -->>> Solana --------------------------------------------------- """
-        context['valor_atual_solana'] = valor_atual_sol()
+        context['valor_atual_sol'] = valor_atual_sol()
         context['percentual_sol'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
             porcentagem=((100 / F('unitary_value')) * valor_atual_sol()) - 100)
         context['solana'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
