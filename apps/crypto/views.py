@@ -1,18 +1,17 @@
-from django.shortcuts import render
-
-import json
-from django.db.models import F, Q
+from django.db.models import F
 from .models import Crypto, Active
-import requests
-
 from .classes.valores_cryptos import *
-
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-from django.views.generic import TemplateView
 
 
 class Index(TemplateView):
+    # optional
+    login_url = '/login/'
+    redirect_field_name = '/login/'
+
     model = Crypto
     template_name = 'crypto/index.html'
 
@@ -25,6 +24,7 @@ class Index(TemplateView):
 
         return context
 
+
 class Carteira(TemplateView):
     model = Active
     template_name = 'crypto/carteira.html'
@@ -32,12 +32,12 @@ class Carteira(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Carteira, self).get_context_data()
 
-        #Bitcoin
-        bitcoin =  requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
+
+        #  Bitcoin
+        bitcoin = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
         bitcoin = bitcoin['ticker']["last"]
         context['bitcoin'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
-            lucro=( bitcoin * F('quantity_crypto')) - F('purchase_value'))
-
+            lucro=(bitcoin * F('quantity_crypto')) - F('purchase_value'))
 
         context['crypt'] = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
         crypt = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
@@ -45,7 +45,7 @@ class Carteira(TemplateView):
         solana = crypt['ticker']["last"]
 
         context['actives'] = Active.objects.annotate(
-            lucro=( solana * F('quantity_crypto')) - F('purchase_value')
+            lucro=(solana * F('quantity_crypto')) - F('purchase_value')
         ).order_by('name_crypto__crypto_symbol')
 
         context['actives'] = Active.objects.annotate(
@@ -53,7 +53,6 @@ class Carteira(TemplateView):
         ).order_by('name_crypto__crypto_symbol')
 
         return context
-
 
 
 class Saldos(TemplateView):
@@ -70,14 +69,12 @@ class Saldos(TemplateView):
         context['cardano'] = Active.objects.filter(name_crypto__crypto_symbol='ADA').annotate(
             lucro=(valor_atual_cardano() * F('quantity_crypto')) - F('purchase_value'))
 
-
         """  -->>> AMP --------------------------------------------------- """
         context['valor_atual_amp'] = valor_atual_amp()
         context['percentual_amp'] = Active.objects.filter(name_crypto__crypto_symbol='AMP').annotate(
              porcentagem=((100 / F('unitary_value')) * valor_atual_amp()) - 100)
         context['amp'] = Active.objects.filter(name_crypto__crypto_symbol='AMP').annotate(
             lucro=(valor_atual_amp() * F('quantity_crypto')) - F('purchase_value'))
-
 
         """  -->>> BNT --------------------------------------------------- """
         context['valor_atual_bnt'] = valor_atual_bnt()
@@ -86,14 +83,12 @@ class Saldos(TemplateView):
         context['bnt'] = Active.objects.filter(name_crypto__crypto_symbol='BNT').annotate(
             lucro=(valor_atual_bnt() * F('quantity_crypto')) - F('purchase_value'))
 
-
         """  -->>> Bitcoin --------------------------------------------------- """
         context['valor_atual_btc'] = valor_atual_btc()
         context['percentual_btc'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
             porcentagem=((100 / F('unitary_value')) * valor_atual_btc()) - 100)
         context['btc'] = Active.objects.filter(name_crypto__crypto_symbol='BTC').annotate(
             lucro=(valor_atual_btc() * F('quantity_crypto')) - F('purchase_value'))
-
 
         """  -->>> Manchester City FC --------------------------------------------------- """
         context['valor_atual_city'] = valor_atual_city()
@@ -102,14 +97,12 @@ class Saldos(TemplateView):
         context['city'] = Active.objects.filter(name_crypto__crypto_symbol='CITYFC').annotate(
             lucro=(valor_atual_city() * F('quantity_crypto')) - F('purchase_value'))
 
-
         """  -->>> Curve Dao Token --------------------------------------------------- """
         context['valor_atual_crv'] = valor_atual_crv()
         context['percentual_crv'] = Active.objects.filter(name_crypto__crypto_symbol='CRV').annotate(
             porcentagem=((100 / F('unitary_value')) * valor_atual_crv()) - 100)
         context['crv'] = Active.objects.filter(name_crypto__crypto_symbol='CRV').annotate(
             lucro=(valor_atual_crv() * F('quantity_crypto')) - F('purchase_value'))
-
 
         """  -->>> Dogecoin --------------------------------------------------- """
         context['valor_atual_doge'] = valor_atual_doge()
@@ -125,7 +118,6 @@ class Saldos(TemplateView):
         context['knc'] = Active.objects.filter(name_crypto__crypto_symbol='KNC').annotate(
             lucro=(valor_atual_knc() * F('quantity_crypto')) - F('purchase_value'))
 
-
         """  -->>> MANA --------------------------------------------------- """
         context['valor_atual_mana'] = valor_atual_mana()
         context['percentual_mana'] = Active.objects.filter(name_crypto__crypto_symbol='MANA').annotate(
@@ -140,14 +132,12 @@ class Saldos(TemplateView):
         context['ren'] = Active.objects.filter(name_crypto__crypto_symbol='REN').annotate(
             lucro=(valor_atual_ren() * F('quantity_crypto')) - F('purchase_value'))
 
-
         """"  -->>> Solana --------------------------------------------------- """
         context['valor_atual_sol'] = valor_atual_sol()
         context['percentual_sol'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
             porcentagem=((100 / F('unitary_value')) * valor_atual_sol()) - 100)
         context['solana'] = Active.objects.filter(name_crypto__crypto_symbol='SOL').annotate(
             lucro=(valor_atual_sol() * F('quantity_crypto')) - F('purchase_value'))
-
 
         """"  -->>> SUSHI --------------------------------------------------- """
         context['valor_atual_sushi'] = valor_atual_sushi()
@@ -156,14 +146,12 @@ class Saldos(TemplateView):
         context['sushi'] = Active.objects.filter(name_crypto__crypto_symbol='SUSHI').annotate(
             lucro=(valor_atual_sushi() * F('quantity_crypto')) - F('purchase_value'))
 
-
         """"  -->>> WiBX --------------------------------------------------- """
         context['valor_atual_wbx'] = valor_atual_wbx()
         context['percentual_wbx'] = Active.objects.filter(name_crypto__crypto_symbol='WBX').annotate(
             porcentagem=((100 / F('unitary_value')) * valor_atual_wbx()) - 100)
         context['wbx'] = Active.objects.filter(name_crypto__crypto_symbol='WBX').annotate(
             lucro=(valor_atual_wbx() * F('quantity_crypto')) - F('purchase_value'))
-
 
         """"  -->>> ZRX --------------------------------------------------- """
         context['valor_atual_zrx'] = valor_atual_zrx()
@@ -178,17 +166,3 @@ class Saldos(TemplateView):
 class Dashboard(TemplateView):
     model = Active
     template_name = "crypto/dashboard.html"
-
-
-    def get_context_data(self, **kwargs):
-        context = super(Dashboard, self).get_context_data()
-
-        queryset = Active.objects.all()
-        names = [obj.name_crypto.name_crypto for obj in queryset]
-        context['moedas'] = names
-
-        context = {
-            'names': json.dumps(names),
-        }
-
-        context

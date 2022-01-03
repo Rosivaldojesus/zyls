@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import django_heroku
+from django.conf import settings
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.messages import constants
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -150,3 +152,18 @@ MESSAGE_TAGS = {
 
 #Heroku
 django_heroku.settings(locals())
+
+MESSAGE_TAGS = {
+    constants.DEBUG: 'alert-info',
+    constants.INFO: 'alert-info',
+    constants.SUCCESS: 'alert-success',
+    constants.WARNING: 'alert-warning',
+    constants.ERROR: 'alert-danger',
+}
+
+
+
+login_url = settings.LOGIN_URL
+raise_exception = False
+redirect_field_name = REDIRECT_FIELD_NAME
+redirect_unauthenticated_users = False

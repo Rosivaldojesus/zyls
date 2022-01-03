@@ -9,6 +9,7 @@
 
 <div class="container">
 
+
   <div class="table-responsive">
   <table class="table">
     <thead>
@@ -22,7 +23,7 @@
 
         <th scope="col">Lucro</th>
 
-        <th scope="col" style="color: green;">First</th>
+        <th scope="col" style="color: green;">Categoria</th>
         <th scope="col">Last</th>
         <th scope="col">Handle</th>
       </tr>
@@ -42,7 +43,9 @@
         </th>
 
 
-        <td>Mark</td>
+        <th>{{ active.category}}</th>
+
+
         <td>Otto</td>
         <td>@mdo</td>
       </tr>
@@ -53,13 +56,6 @@
 
 
 ---------------------------------------------------------------------------------------------------
-  Pegado o lucro 
-  <div>
-    {% for porcentagem in porcentagem_cardano %}
-     Lucro {{ porcentagem.porcentagem}}
-    {% endfor %}
-    
-  </div>
 
 </div>
 {% endblock %}
