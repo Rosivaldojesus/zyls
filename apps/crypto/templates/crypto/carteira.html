@@ -4,30 +4,20 @@
 
 {% block title %}<title>  .:: Carteira </title>{% endblock %}
 
-
 {% block main %}
 
 <div class="container">
-
-
   <div class="table-responsive">
   <table class="table">
     <thead>
-      
       <tr>
         <th scope="col">Ativo</th>
         <th scope="col">Símbolo</th>
         <th scope="col">Compra</th>
         <th scope="col">Atual</th>
         <th scope="col">Quantidade</th>
-
-        <th scope="col">Lucro</th>
-
         <th scope="col">Categoria</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
       </tr>
-      
     </thead>
     <tbody>
       {% for active in actives %}
@@ -37,26 +27,13 @@
         <th>{{ active.purchase_value }}</th>
         <th>{{ active.name_crypto.value_current_cripto }}</th>
         <th>{{ active.quantity_crypto }}</th>
-
-        <th {% if active.lucro > 0 %} style="color: green;" {% elif active.lucro < 0 %} style="color: red;" {% endif %}>
-          {{ active.lucro|intcomma }}
-        </th>
-
-
         <th>{{ active.name_crypto.category}}</th>
 
-
-        <td>Otto</td>
-        <td>@mdo</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
   </div>
-
-
----------------------------------------------------------------------------------------------------
-
 </div>
 {% endblock %}
 

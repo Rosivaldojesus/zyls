@@ -18,6 +18,8 @@ class Index(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['cryptos'] = Crypto.objects.all()
+
+        
         context['crypt'] = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
         crypt = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()
         context['solana'] = crypt['ticker']["last"]
@@ -48,11 +50,16 @@ class Carteira(TemplateView):
             lucro=(solana * F('quantity_crypto')) - F('purchase_value')
         ).order_by('name_crypto__crypto_symbol')
 
+
+
         context['actives'] = Active.objects.annotate(
             lucro=(F('name_crypto__value_current_cripto') * F('quantity_crypto')) - F('purchase_value')
         ).order_by('name_crypto__crypto_symbol')
 
         return context
+
+
+
 
 
 class Saldos(TemplateView):
