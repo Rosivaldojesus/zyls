@@ -7,34 +7,36 @@
 {% block main %}
 
 <div class="container">
-  <div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Ativo</th>
-        <th scope="col">Símbolo</th>
-        <th scope="col">T. Compra</th>
-        <th scope="col">Valor Compra</th>
-        <th scope="col">Quantidade</th>
-        <th scope="col">Categoria</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for active in actives %}
-      <tr>
-        <th>{{ active.name_crypto.name_crypto }}</th>
-        <th>{{ active.name_crypto.crypto_symbol }}</th>
-        <th>{{ active.purchase_value }}</th>
-        <th>{{ active.unitary_value }}</th>
-        <th>{{ active.quantity_crypto }}</th>
-        <th>{{ active.name_crypto.category}}</th>
+  <div class="table-responsive shadow mt-4">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Ativo</th>
+            <th scope="col">Símbolo</th>
+            <th scope="col">Investimento</th>
+            <th scope="col">Valor Unit.</th>
+            <th scope="col">Quantidade</th>
 
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+            <th scope="col">Categoria</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for active in actives %}
+          <tr>
+            <th>{{ active.name_crypto.name_crypto }}</th>
+            <th>{{ active.name_crypto.crypto_symbol }}</th>
+            <th>{{ active.purchase_value }}</th>
+            <th>{{ active.unitary_value }}</th>
+            <th>{{ active.quantity_crypto }}</th>
+            <th>{{ active.name_crypto.category}}</th>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
   </div>
 </div>
 {% endblock %}
+
+
 
 

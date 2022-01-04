@@ -35,9 +35,11 @@ def valor_atual_doge():
     valor_doge = requests.get('https://www.mercadobitcoin.net/api/DOGE/ticker/').json()['ticker']["last"]
     return valor_doge
 
+
 def valor_atual_knc():
     valor_knc = requests.get('https://www.mercadobitcoin.net/api/KNC/ticker/').json()['ticker']["last"]
     return valor_knc
+
 
 def valor_atual_mana():
     valor_mana = requests.get('https://www.mercadobitcoin.net/api/MANA/ticker/').json()['ticker']["last"]
@@ -47,6 +49,7 @@ def valor_atual_mana():
 def valor_atual_ren():
     valor_ren = requests.get('https://www.mercadobitcoin.net/api/REN/ticker/').json()['ticker']["last"]
     return valor_ren
+
 
 def valor_atual_sol():
     valor_sol = requests.get('https://www.mercadobitcoin.net/api/SOL/ticker/').json()['ticker']["last"]
