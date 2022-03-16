@@ -39,6 +39,13 @@ class Carteira(TemplateView):
 
         return context
 
+    for moeda in Active.objects.all():
+        # print(f'Moeda: {moeda.name_crypto}')
+        moeda = moeda.name_crypto.crypto_symbol
+        valor_moeda = requests.get('https://www.mercadobitcoin.net/api/'+ moeda + '/ticker/').json()['ticker']["last"]
+        # print(valor_moeda)
+
+
 
 class Saldos(TemplateView):
     model = Active
@@ -145,9 +152,55 @@ class Saldos(TemplateView):
         context['zrx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
             lucro=(valor_atual_zrx() * F('quantity_crypto')) - F('purchase_value'))
 
+
+
+
+        precos = []
+        for moeda in Active.objects.all():
+            # print(f'Moeda: {moeda.name_crypto}')
+            moeda = moeda.name_crypto.crypto_symbol
+            valor_moeda = requests.get('https://www.mercadobitcoin.net/api/' + moeda + '/ticker/').json()['ticker'][
+                "last"]
+            precos.append([moeda, valor_moeda])
+
+        #print(precos)
+        context['moedas'] = precos
+
+
+
+
+
         return context
+    #
+    # for moeda in Active.objects.all():
+    #     #print(f'Moeda: {moeda.name_crypto}')
+    #     moeda = moeda.name_crypto.crypto_symbol
+    #     valor_moeda = requests.get('https://www.mercadobitcoin.net/api/'+ moeda + '/ticker/').json()['ticker']["last"]
+    #     print(f'{moeda} R$: {valor_moeda}')
+
+    # precos = {"Moeda": [], "ValorMoeda": []};
+
+    valor = []
+
+
+    for moeda in Active.objects.all():
+        # print(f'Moeda: {moeda.name_crypto}')
+        moeda = moeda.name_crypto.crypto_symbol
+        valor_moeda = requests.get('https://www.mercadobitcoin.net/api/' + moeda + '/ticker/').json()['ticker'][
+            "last"]
+        # precos{'Moeda'}.append(moeda)
+        # precos{'ValorMoeda'}.append(valor_moeda)
+
+        valor.append([moeda, valor_moeda])
+
+
+        # print(f'{moeda} R$: {valor_moeda}')
+    print(valor)
+
 
 
 class Dashboard(TemplateView):
     model = Active
     template_name = "crypto/dashboard.html"
+
+
