@@ -160,7 +160,7 @@ class Saldos(TemplateView):
             # print(f'Moeda: {moeda.name_crypto}')
             moeda = moeda.name_crypto.crypto_symbol
             valor_moeda = requests.get('https://www.mercadobitcoin.net/api/' + moeda + '/ticker/').json()['ticker'][
-                "last"]
+                "last"].json()
             precos.append([moeda, valor_moeda])
 
         #print(precos)
