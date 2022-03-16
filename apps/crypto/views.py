@@ -166,29 +166,23 @@ class Saldos(TemplateView):
         # #print(precos)
         # context['moedas'] = precos
 
-
-
-
-
-
-
-
-        valor = []
+        valor = {}
         for moeda in Active.objects.all():
             # print(f'Moeda: {moeda.name_crypto}')
             moeda = moeda.name_crypto.crypto_symbol
-
-            # valor_moeda = requests.get('https://www.mercadobitcoin.net/api/' + moeda + '/ticker/').json()['ticker'][
-            #     "last"]
+            valor_moeda = requests.get('https://www.mercadobitcoin.net/api/' + moeda + '/ticker/').json()['ticker'][
+                "last"]
             # precos{'Moeda'}.append(moeda)
             # precos{'ValorMoeda'}.append(valor_moeda)
-
-            valor.append([moeda])
-
-            # print(f'{moeda} R$: {valor_moeda}')
+            valor[moeda] = valor_moeda
+            # valor.append(moeda)
         print(valor)
+        context['moedas'] = valor
 
-        context['valor'] = valor
+
+
+
+
 
 
 
@@ -204,16 +198,16 @@ class Saldos(TemplateView):
 
     # precos = {"Moeda": [], "ValorMoeda": []};
 
-    valor = []
+    valor = {}
     for moeda in Active.objects.all():
         # print(f'Moeda: {moeda.name_crypto}')
         moeda = moeda.name_crypto.crypto_symbol
-        # valor_moeda = requests.get('https://www.mercadobitcoin.net/api/' + moeda + '/ticker/').json()['ticker'][
-        #     "last"]
+        valor_moeda = requests.get('https://www.mercadobitcoin.net/api/' + moeda + '/ticker/').json()['ticker'][
+            "last"]
         # precos{'Moeda'}.append(moeda)
         # precos{'ValorMoeda'}.append(valor_moeda)
-
-        valor.append(moeda)
+        valor[moeda] = valor_moeda
+        # valor.append(moeda)
     print(valor)
 
 
