@@ -155,19 +155,39 @@ class Saldos(TemplateView):
 
 
 
-        precos = []
+        # precos = []
+        # for moeda in Active.objects.all():
+        #     # print(f'Moeda: {moeda.name_crypto}')
+        #     crypto = moeda.name_crypto.crypto_symbol
+        #     valor = requests.get('https://www.mercadobitcoin.net/api/' + crypto + '/ticker/')
+        #     valor_moeda = valor.json()['ticker']["last"]
+        #     precos.append((crypto, valor_moeda))
+        #
+        # #print(precos)
+        # context['moedas'] = precos
+
+
+
+
+
+
+
+
+        valor = []
         for moeda in Active.objects.all():
             # print(f'Moeda: {moeda.name_crypto}')
-            crypto = moeda.name_crypto.crypto_symbol
+            moeda = moeda.name_crypto.crypto_symbol
+            # valor_moeda = requests.get('https://www.mercadobitcoin.net/api/' + moeda + '/ticker/').json()['ticker'][
+            #     "last"]
+            # precos{'Moeda'}.append(moeda)
+            # precos{'ValorMoeda'}.append(valor_moeda)
 
-            # valor = requests.get('https://www.mercadobitcoin.net/api/' + crypto + '/ticker/')
-            # valor_moeda = valor.json()['ticker']["last"]
+            valor.append(moeda)
 
+            # print(f'{moeda} R$: {valor_moeda}')
+        print(valor)
 
-            precos.append([crypto])
-
-        #print(precos)
-        context['moedas'] = precos
+        context['valor'] = valor
 
 
 
@@ -184,20 +204,15 @@ class Saldos(TemplateView):
     # precos = {"Moeda": [], "ValorMoeda": []};
 
     valor = []
-
-
     for moeda in Active.objects.all():
         # print(f'Moeda: {moeda.name_crypto}')
         moeda = moeda.name_crypto.crypto_symbol
-        valor_moeda = requests.get('https://www.mercadobitcoin.net/api/' + moeda + '/ticker/').json()['ticker'][
-            "last"]
+        # valor_moeda = requests.get('https://www.mercadobitcoin.net/api/' + moeda + '/ticker/').json()['ticker'][
+        #     "last"]
         # precos{'Moeda'}.append(moeda)
         # precos{'ValorMoeda'}.append(valor_moeda)
 
-        valor.append([moeda, valor_moeda])
-
-
-        # print(f'{moeda} R$: {valor_moeda}')
+        valor.append(moeda)
     print(valor)
 
 
