@@ -152,6 +152,7 @@ class Saldos(TemplateView):
         context['zrx'] = Active.objects.filter(name_crypto__crypto_symbol='ZRX').annotate(
             lucro=(valor_atual_zrx() * F('quantity_crypto')) - F('purchase_value'))
 
+        return context
 
 
 
