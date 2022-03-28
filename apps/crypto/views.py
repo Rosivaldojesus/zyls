@@ -39,13 +39,13 @@ class Carteira(TemplateView):
 
         return context
 
-    for moeda in Active.objects.all():
-        # print(f'Moeda: {moeda.name_crypto}')
-        moeda = moeda.name_crypto.crypto_symbol
-        valor_moeda = requests.get('https://www.mercadobitcoin.net/api/'+ moeda + '/ticker/').json()['ticker']["last"]
-        # print(valor_moeda)
-
-
+    # for moeda in Active.objects.all():
+    #     # print(f'Moeda: {moeda.name_crypto}')
+    #     moeda = moeda.name_crypto.crypto_symbol
+    #     valor_moeda = requests.get('https://www.mercadobitcoin.net/api/'+ moeda + '/ticker/').json()['ticker']["last"]
+    #     # print(valor_moeda)
+    #
+    #
 
 class Saldos(TemplateView):
     model = Active
